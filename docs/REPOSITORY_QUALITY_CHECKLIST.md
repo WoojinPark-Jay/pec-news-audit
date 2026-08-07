@@ -7,10 +7,8 @@ making any part of the repository public.
 
 - [ ] `README.md` points to the current manuscript, figure gallery, and metric
       guide.
-- [ ] `docs/COLLABORATOR_ONBOARDING.md` describes the review path.
-- [ ] `CONTRIBUTING.md` explains the data boundary and pull request process.
-- [ ] `SECURITY.md` explains how to handle accidental private-data exposure.
-- [ ] `.github/pull_request_template.md` is present.
+- [ ] `docs/DATA_RELEASE_POLICY.md` explains the data boundary.
+- [ ] `docs/ARTIFACT_GUIDE.md` explains the public artifacts.
 - [ ] No private data files are tracked by Git.
 
 ## Before Manuscript Submission
@@ -19,7 +17,6 @@ making any part of the repository public.
 - [ ] Main figures are visually checked in the PDF.
 - [ ] Appendix tables are not split awkwardly across pages.
 - [ ] References are author-year style and checked against the audit document.
-- [ ] `docs/REFERENCE_USAGE_AUDIT_V48.md` maps each reference to manuscript use.
 - [ ] Checklist, ethics, and data-availability text match the current claims.
 
 ## Before Public Release

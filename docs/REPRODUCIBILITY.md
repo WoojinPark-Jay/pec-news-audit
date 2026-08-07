@@ -119,7 +119,7 @@ For collaborators reviewing the release-safe artifact package:
 1. `python scripts/check_release_artifacts.py`
 2. `notebooks/00_release_artifact_tour.ipynb`
 3. `notebooks/01_metric_walkthrough_synthetic.ipynb`
-4. `notebooks/03_paper_figure_gallery.ipynb`
+4. `python scripts/make_release_figures.py`
 
 For authorized internal reruns, follow the notebook order in
-`docs/COLLABORATOR_ONBOARDING.md`.
+`notebooks/repro_deep/README.md`.
