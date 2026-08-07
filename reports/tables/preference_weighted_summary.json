@@ -1,0 +1,180 @@
+{
+  "n_users": 698,
+  "category": {
+    "top_clicked_category_weight_mean": 0.1425843084192898,
+    "top_clicked_category_weight_median": 0.1067,
+    "top3_clicked_category_pref_mass_mean": 0.2635462879020605,
+    "top_preference_category_click_share_mean": 0.30194315791950876,
+    "pref_click_cosine_mean": 0.45231196083746134,
+    "pref_click_js_mean": 0.5787164309052794,
+    "top_pref_equals_top_click_pct": 34.240687679083095,
+    "pref_entropy_mean": 0.7896738186727803,
+    "pref_max_weight_mean": 0.21903070732482968
+  },
+  "publisher": {
+    "top_clicked_publisher_weight_mean": 0.014350000000000002,
+    "top_clicked_publisher_weight_median": 0.001,
+    "top5_clicked_publisher_pref_mass_mean": 0.03776790830945559,
+    "top_preference_publisher_click_share_mean": 0.010445783746077556,
+    "pref_click_cosine_mean": 0.08017924058456442,
+    "pref_click_js_mean": 0.9156747808555622,
+    "top_pref_equals_top_click_pct": 1.4326647564469914,
+    "pref_entropy_mean": 0.5593773658354396,
+    "pref_max_weight_mean": 0.1535875358166189
+  },
+  "model": {
+    "best": {
+      "model": "RandomForest",
+      "auc_mean": 0.8593025532581453,
+      "auc_std": 0.0346640528373009,
+      "auprc_mean": 0.8611475391117818,
+      "accuracy_mean": 0.7837307297019527,
+      "f1_mean": 0.7416669418072065,
+      "feature_set": "full_plus_weighted_static",
+      "n_users": 698
+    },
+    "best_by_feature_set": [
+      {
+        "model": "RandomForest",
+        "auc_mean": 0.8230266421261486,
+        "auc_std": 0.04137410262487647,
+        "auprc_mean": 0.8373536354122585,
+        "accuracy_mean": 0.7823432682425489,
+        "f1_mean": 0.7396704749432443,
+        "feature_set": "current_profile_plus_weighted",
+        "n_users": 698
+      },
+      {
+        "model": "RandomForest",
+        "auc_mean": 0.8593025532581453,
+        "auc_std": 0.0346640528373009,
+        "auprc_mean": 0.8611475391117818,
+        "accuracy_mean": 0.7837307297019527,
+        "f1_mean": 0.7416669418072065,
+        "feature_set": "full_plus_weighted_static",
+        "n_users": 698
+      },
+      {
+        "model": "Logistic",
+        "auc_mean": 0.5435519136382624,
+        "auc_std": 0.04279795483304843,
+        "auprc_mean": 0.5257260202734025,
+        "accuracy_mean": 0.5173072970195273,
+        "f1_mean": 0.5190898927285829,
+        "feature_set": "static_profile_counts",
+        "n_users": 698
+      },
+      {
+        "model": "Logistic",
+        "auc_mean": 0.698422488512949,
+        "auc_std": 0.04087974664588471,
+        "auprc_mean": 0.6826507400154705,
+        "accuracy_mean": 0.6561870503597123,
+        "f1_mean": 0.6287958389574906,
+        "feature_set": "static_profile_plus_weighted",
+        "n_users": 698
+      },
+      {
+        "model": "Logistic",
+        "auc_mean": 0.6962089468462824,
+        "auc_std": 0.04866883091623908,
+        "auprc_mean": 0.6784769236659752,
+        "accuracy_mean": 0.6404830421377185,
+        "f1_mean": 0.6157481289195024,
+        "feature_set": "static_weighted_prefs",
+        "n_users": 698
+      }
+    ],
+    "stress_best_by_task": [
+      {
+        "model": "RandomForest",
+        "auc_mean": 0.8593025532581453,
+        "auc_std": 0.0346640528373009,
+        "auprc_mean": 0.8611475391117818,
+        "accuracy_mean": 0.7837307297019527,
+        "f1_mean": 0.7416669418072065,
+        "task": "median_divergence_all",
+        "feature_set": "full_plus_weighted_static",
+        "n_users": 698,
+        "positive_rate": 0.4555873925501432
+      },
+      {
+        "model": "GradientBoosting",
+        "auc_mean": 0.7073422472437251,
+        "auc_std": 0.1128199123890568,
+        "auprc_mean": 0.5350079155745944,
+        "accuracy_mean": 0.8228571428571427,
+        "f1_mean": 0.3423076923076923,
+        "task": "median_divergence_click_ge_10",
+        "feature_set": "full_plus_weighted_static",
+        "n_users": 175,
+        "positive_rate": 0.1942857142857142
+      },
+      {
+        "model": "RandomForest",
+        "auc_mean": 0.6983148148148148,
+        "auc_std": 0.0601433016657197,
+        "auprc_mean": 0.5175815462411758,
+        "accuracy_mean": 0.7254644808743169,
+        "f1_mean": 0.3932194357366771,
+        "task": "median_divergence_click_ge_5",
+        "feature_set": "full_plus_weighted_static",
+        "n_users": 302,
+        "positive_rate": 0.2549668874172185
+      },
+      {
+        "model": "Logistic",
+        "auc_mean": 0.7506030591565337,
+        "auc_std": 0.0408218074435858,
+        "auprc_mean": 0.5092541582843257,
+        "accuracy_mean": 0.7522096608427543,
+        "f1_mean": 0.5243497762384531,
+        "task": "top_category_mismatch",
+        "feature_set": "static_weighted_prefs",
+        "n_users": 698,
+        "positive_rate": 0.2277936962750716
+      }
+    ],
+    "label_proximity_sensitivity": [
+      {
+        "model": "RandomForest",
+        "auc_mean": 0.8593025532581453,
+        "auc_std": 0.0346640528373009,
+        "auprc_mean": 0.8611475391117818,
+        "accuracy_mean": 0.7837307297019527,
+        "f1_mean": 0.7416669418072065,
+        "setting": "primary_full",
+        "n_users": 698,
+        "positive_rate": 0.45558739255014324,
+        "feature_count": 31,
+        "excluded_features": ""
+      },
+      {
+        "model": "RandomForest",
+        "auc_mean": 0.852683615819209,
+        "auc_std": 0.043941720790180626,
+        "auprc_mean": 0.8559014909858289,
+        "accuracy_mean": 0.7703485838779957,
+        "f1_mean": 0.7141057579318449,
+        "setting": "exclude_empty_stated_category_sets",
+        "n_users": 679,
+        "positive_rate": 0.44035346097201766,
+        "feature_count": 31,
+        "excluded_features": ""
+      },
+      {
+        "model": "RandomForest",
+        "auc_mean": 0.8621984649122807,
+        "auc_std": 0.03593847184926837,
+        "auprc_mean": 0.8653090371713379,
+        "accuracy_mean": 0.7837204522096609,
+        "f1_mean": 0.7393992456435743,
+        "setting": "exclude_profile_support_counts",
+        "n_users": 698,
+        "positive_rate": 0.45558739255014324,
+        "feature_count": 29,
+        "excluded_features": "num_stated_categories;num_stated_publishers"
+      }
+    ]
+  }
+}

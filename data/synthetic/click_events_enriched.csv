@@ -1,0 +1,7 @@
+user_id,event_date_iso,news_id,news_matched,category_final,publisher_id_final,surface
+u1,2026-01-03,n1,true,politics,p1,headline
+u1,2026-01-03,n2,true,politics,p2,category
+u1,2026-01-04,n3,true,sports,p3,home/feed
+u2,2026-01-03,n4,true,sports,p3,headline
+u2,2026-01-05,n5,true,sports,p3,newsroom
+u3,2026-01-04,n6,true,technology,p4,article-detail

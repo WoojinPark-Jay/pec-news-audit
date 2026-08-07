@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+title: "PEC Gap News Audit"
+message: "Please cite the associated manuscript once a preprint, proceedings version, or accepted citation is available."
+type: software
+authors:
+  - family-names: "Anonymous"
+    given-names: "Author"
+abstract: "Research artifact package for auditing Preference-Exposure-Consumption gaps in personalized news recommenders."
+license: "MIT"
+version: "0.2.0"
+date-released: "2026-07-23"

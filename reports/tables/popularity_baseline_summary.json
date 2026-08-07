@@ -1,0 +1,10 @@
+{
+  "comparable_click_rows": 11440,
+  "actual_all_hit_pct": 11.293706293706293,
+  "date_matched_random_all_hit_pct": 9.134833916083917,
+  "same_day_global_recommendation_popularity_all_hit_pct": 9.519230769230768,
+  "prior_1d_click_popularity_all_hit_pct": 8.854895104895105,
+  "prior_7d_click_popularity_all_hit_pct": 4.353146853146853,
+  "same_day_click_popularity_oracle_all_hit_pct": 38.61013986013986,
+  "interpretation": "Logged recommendations beat prior click-popularity and same-day global recommendation-popularity baselines, but a same-day click-popularity oracle is much higher and should be treated only as a diagnostic upper bound, not a fair deployable baseline."
+}

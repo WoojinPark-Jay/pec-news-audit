@@ -1,0 +1,4 @@
+user_id,interested_categories_user_selection,preferred_news_sources_user_selection,tier,platform,preferred_language
+u1,"[""politics"", ""economy""]","[""p1"", ""p2""]",BASIC,ios,en
+u2,"[""sports"", ""entertainment""]","[""p3""]",PREMIUM,android,en
+u3,"[""technology"", ""economy""]","[""p2"", ""p4""]",BASIC,ios,en

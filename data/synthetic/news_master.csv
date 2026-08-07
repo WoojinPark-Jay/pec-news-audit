@@ -1,0 +1,11 @@
+news_id,publisher_id,category,publisher_category,language,published_at,headline_flag,is_breaking
+n1,p1,politics,politics,en,2026-01-03 08:00:00,true,false
+n2,p2,politics,politics,en,2026-01-03 09:00:00,false,false
+n3,p3,sports,sports,en,2026-01-04 10:00:00,false,false
+n4,p3,sports,sports,en,2026-01-03 08:30:00,true,false
+n5,p3,sports,sports,en,2026-01-05 11:00:00,false,true
+n6,p4,technology,technology,en,2026-01-04 12:00:00,false,false
+n7,p2,economy,economy,en,2026-01-03 09:30:00,false,false
+n8,p4,technology,technology,en,2026-01-03 10:30:00,false,false
+n9,p5,entertainment,entertainment,en,2026-01-03 11:30:00,false,false
+n10,p2,economy,economy,en,2026-01-04 12:30:00,false,false

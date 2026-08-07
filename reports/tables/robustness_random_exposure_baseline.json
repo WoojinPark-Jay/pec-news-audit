@@ -1,0 +1,7 @@
+{
+  "actual_same_day_hit_rate": 0.11293706293706293,
+  "random_same_day_hit_rate_mean": 0.09134833916083916,
+  "random_same_day_hit_rate_ci_95_low": 0.08766826923076923,
+  "random_same_day_hit_rate_ci_95_high": 0.09529064685314685,
+  "iterations": 200
+}
