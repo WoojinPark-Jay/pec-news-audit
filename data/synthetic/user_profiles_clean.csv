@@ -1,0 +1,25 @@
+user_id,interested_categories_user_selection,preferred_news_sources_user_selection,tier,platform,preferred_language
+u001,"[""politics"", ""economy""]","[""p1"", ""p2""]",PREMIUM,ios,en
+u002,"[""economy"", ""society""]","[""p2"", ""p3""]",BASIC,android,en
+u003,"[""society"", ""sports""]","[""p3"", ""p4""]",BASIC,ios,en
+u004,"[""sports"", ""technology""]","[""p4"", ""p5""]",PREMIUM,android,en
+u005,"[""technology"", ""culture""]","[""p5"", ""p6""]",BASIC,ios,en
+u006,"[""culture"", ""politics""]","[""p6"", ""p1""]",BASIC,android,en
+u007,"[""politics"", ""economy""]","[""p1"", ""p2""]",PREMIUM,ios,en
+u008,"[""economy"", ""society""]","[""p2"", ""p3""]",BASIC,android,en
+u009,"[""society"", ""sports""]","[""p3"", ""p4""]",BASIC,ios,en
+u010,"[""sports"", ""technology""]","[""p4"", ""p5""]",PREMIUM,android,en
+u011,"[""technology"", ""culture""]","[""p5"", ""p6""]",BASIC,ios,en
+u012,"[""culture"", ""politics""]","[""p6"", ""p1""]",BASIC,android,en
+u013,"[""politics"", ""economy""]","[""p1"", ""p2""]",PREMIUM,ios,en
+u014,"[""economy"", ""society""]","[""p2"", ""p3""]",BASIC,android,en
+u015,"[""society"", ""sports""]","[""p3"", ""p4""]",BASIC,ios,en
+u016,"[""sports"", ""technology""]","[""p4"", ""p5""]",PREMIUM,android,en
+u017,"[""technology"", ""culture""]","[""p5"", ""p6""]",BASIC,ios,en
+u018,"[""culture"", ""politics""]","[""p6"", ""p1""]",BASIC,android,en
+u019,"[""politics"", ""economy""]","[""p1"", ""p2""]",PREMIUM,ios,en
+u020,"[""economy"", ""society""]","[""p2"", ""p3""]",BASIC,android,en
+u021,"[""society"", ""sports""]","[""p3"", ""p4""]",BASIC,ios,en
+u022,"[""sports"", ""technology""]","[""p4"", ""p5""]",PREMIUM,android,en
+u023,"[""technology"", ""culture""]","[""p5"", ""p6""]",BASIC,ios,en
+u024,"[""culture"", ""politics""]","[""p6"", ""p1""]",BASIC,android,en

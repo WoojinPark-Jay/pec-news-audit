@@ -1,0 +1,25 @@
+news_id,publisher_id,category,publisher_category,language,published_at,headline_flag,is_breaking
+n001,p1,politics,politics,en,2026-01-03 08:00:00,true,false
+n002,p1,politics,politics,en,2026-01-04 08:00:00,false,true
+n003,p1,politics,politics,en,2026-01-05 08:00:00,false,false
+n004,p1,politics,politics,en,2026-01-06 08:00:00,false,false
+n005,p2,economy,economy,en,2026-01-03 08:00:00,true,false
+n006,p2,economy,economy,en,2026-01-04 08:00:00,false,true
+n007,p2,economy,economy,en,2026-01-05 08:00:00,false,false
+n008,p2,economy,economy,en,2026-01-06 08:00:00,false,false
+n009,p3,society,society,en,2026-01-03 08:00:00,true,false
+n010,p3,society,society,en,2026-01-04 08:00:00,false,true
+n011,p3,society,society,en,2026-01-05 08:00:00,false,false
+n012,p3,society,society,en,2026-01-06 08:00:00,false,false
+n013,p4,sports,sports,en,2026-01-03 08:00:00,true,false
+n014,p4,sports,sports,en,2026-01-04 08:00:00,false,true
+n015,p4,sports,sports,en,2026-01-05 08:00:00,false,false
+n016,p4,sports,sports,en,2026-01-06 08:00:00,false,false
+n017,p5,technology,technology,en,2026-01-03 08:00:00,true,false
+n018,p5,technology,technology,en,2026-01-04 08:00:00,false,true
+n019,p5,technology,technology,en,2026-01-05 08:00:00,false,false
+n020,p5,technology,technology,en,2026-01-06 08:00:00,false,false
+n021,p6,culture,culture,en,2026-01-03 08:00:00,true,false
+n022,p6,culture,culture,en,2026-01-04 08:00:00,false,true
+n023,p6,culture,culture,en,2026-01-05 08:00:00,false,false
+n024,p6,culture,culture,en,2026-01-06 08:00:00,false,false

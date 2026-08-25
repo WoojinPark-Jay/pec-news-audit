@@ -1,0 +1,31 @@
+{
+  "news_rows": 128385,
+  "news_unique_ids": 128385,
+  "news_date_min": "2026-01-01 00:20:55",
+  "news_date_max": "2026-06-30 23:57:18",
+  "profiles": 1583,
+  "behavior_rows": 471027,
+  "behavior_months": {
+    "2026-01": 64551,
+    "2026-02": 45681,
+    "2026-03": 47163,
+    "2026-04": 88743,
+    "2026-05": 124781,
+    "2026-06": 100108
+  },
+  "click_rows": 17512,
+  "click_users": 715,
+  "click_unique_news": 7424,
+  "click_unique_news_matched": 7347,
+  "click_unique_news_match_pct": 98.96,
+  "click_rows_matched": 17232,
+  "click_rows_match_pct": 98.4,
+  "recommendation_rows": 4613,
+  "recommendation_items": 95143,
+  "recommendation_users": 1505,
+  "recommendation_unique_news": 35525,
+  "recommendation_unique_news_matched": 33829,
+  "recommendation_unique_news_match_pct": 95.23,
+  "recommendation_items_matched": 90076,
+  "recommendation_items_match_pct": 94.67
+}

@@ -1,0 +1,9 @@
+{
+  "data_mode": "deterministic_synthetic",
+  "contains_real_user_data": false,
+  "generator": "scripts/generate_public_synthetic_data.py",
+  "users": 24,
+  "clicks": 96,
+  "recommendation_items": 144,
+  "news_items": 24
+}

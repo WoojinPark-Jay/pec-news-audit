@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.python_packages/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Private data and local reruns
+data/raw/
+data/processed/
+data/private/
+reports/private/
+tmp/
+output/
+.pecgap_local_paths.json
+
+# Manuscript/build clutter
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+
+# System files
+.DS_Store

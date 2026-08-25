@@ -1,0 +1,115 @@
+{
+  "seed": 42,
+  "n_permutations": 10000,
+  "eligible_users_for_top_category_match": 698,
+  "eligible_users_for_jaccard": 698,
+  "nonempty_stated_set_sensitivity_users": 679,
+  "empty_stated_category_users": 19,
+  "observed": {
+    "top_category_match_pct": 77.22063037249283,
+    "top_category_match_count": 539,
+    "top_category_match_denominator": 698,
+    "mean_category_jaccard_top3": 0.22827290108808732,
+    "median_category_jaccard_top3": 0.2,
+    "jaccard_denominator": 698,
+    "empty_stated_sets_contribute_zero": true,
+    "nonempty_stated_set_sensitivity": {
+      "denominator": 679,
+      "mean_category_jaccard_top3": 0.23466050804047855,
+      "median_category_jaccard_top3": 0.2
+    }
+  },
+  "nulls": {
+    "shuffle_user_preference_sets": {
+      "description": "Shuffle full stated category sets across users; preserves empirical set sizes, empty profiles, and category co-occurrence patterns. Empty stated sets contribute zero overlap against non-empty clicked sets.",
+      "top_category_match_pct": {
+        "mean": 61.538266475644704,
+        "sd": 1.334735438482043,
+        "ci95_low": 58.88252148997135,
+        "ci95_high": 64.04011461318052,
+        "p_one_sided_ge_observed": 9.999000099990002e-05,
+        "z_vs_null": 11.749417483575053
+      },
+      "mean_category_jaccard_top3": {
+        "mean": 0.16061648440663126,
+        "sd": 0.004084344115500511,
+        "ci95_low": 0.15276132614599663,
+        "ci95_high": 0.16873764736139377,
+        "p_one_sided_ge_observed": 9.999000099990002e-05,
+        "z_vs_null": 16.564817940949908
+      },
+      "median_category_jaccard_top3": {
+        "mean": 0.14450254120879116,
+        "sd": 0.004350877131181902,
+        "ci95_low": 0.14285714285714285,
+        "ci95_high": 0.15384615384615385,
+        "p_one_sided_ge_observed": 9.999000099990002e-05,
+        "z_vs_null": 12.75546450012785
+      },
+      "nonempty_stated_set_sensitivity": {
+        "mean_category_jaccard_top3": {
+          "mean": 0.1651109073870819,
+          "sd": 0.00419863356792247,
+          "ci95_low": 0.1570359435197432,
+          "ci95_high": 0.17345931937887019,
+          "p_one_sided_ge_observed": 9.999000099990002e-05,
+          "z_vs_null": 16.56481794094991
+        },
+        "median_category_jaccard_top3": {
+          "mean": 0.1489216117216117,
+          "sd": 0.007247037808051156,
+          "ci95_low": 0.14285714285714285,
+          "ci95_high": 0.16666666666666666,
+          "p_one_sided_ge_observed": 9.999000099990002e-05,
+          "z_vs_null": 7.048174665467091
+        }
+      }
+    },
+    "category_frequency_weighted_size_preserving": {
+      "description": "For each user, sample the same number of categories from the empirical marginal preference-category distribution; preserves profile size and marginal prevalence, including empty profiles. Empty stated sets contribute zero overlap against non-empty clicked sets.",
+      "top_category_match_pct": {
+        "mean": 54.80623209169055,
+        "sd": 1.4865766825517968,
+        "ci95_low": 52.00573065902579,
+        "ci95_high": 57.73638968481375,
+        "p_one_sided_ge_observed": 9.999000099990002e-05,
+        "z_vs_null": 15.077862140502999
+      },
+      "mean_category_jaccard_top3": {
+        "mean": 0.13680295304106907,
+        "sd": 0.0040891057466286495,
+        "ci95_low": 0.12887390447025118,
+        "ci95_high": 0.1449606747717421,
+        "p_one_sided_ge_observed": 9.999000099990002e-05,
+        "z_vs_null": 22.369181360113416
+      },
+      "median_category_jaccard_top3": {
+        "mean": 0.1203055753968254,
+        "sd": 0.006767441420022546,
+        "ci95_low": 0.1111111111111111,
+        "ci95_high": 0.125,
+        "p_one_sided_ge_observed": 9.999000099990002e-05,
+        "z_vs_null": 11.776152855551294
+      },
+      "nonempty_stated_set_sensitivity": {
+        "mean_category_jaccard_top3": {
+          "mean": 0.14063101800098116,
+          "sd": 0.004203528440569657,
+          "ci95_low": 0.1324800962006411,
+          "ci95_high": 0.1490170117683004,
+          "p_one_sided_ge_observed": 9.999000099990002e-05,
+          "z_vs_null": 22.36918136011342
+        },
+        "median_category_jaccard_top3": {
+          "mean": 0.12506924603174602,
+          "sd": 0.005976205366649991,
+          "ci95_low": 0.1111111111111111,
+          "ci95_high": 0.14285714285714285,
+          "p_one_sided_ge_observed": 9.999000099990002e-05,
+          "z_vs_null": 12.538182570900675
+        }
+      }
+    }
+  },
+  "interpretation": "Observed P-C alignment exceeds both chance baselines, so RQ1 is not explained only by preference-set size or common category prevalence. The result remains descriptive because profile snapshots are current states, not edit histories."
+}

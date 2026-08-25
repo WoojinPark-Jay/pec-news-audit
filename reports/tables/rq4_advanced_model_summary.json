@@ -1,0 +1,79 @@
+{
+  "users": 698,
+  "positive_users": 318,
+  "positive_rate": 0.45558739255014324,
+  "candidate_model_families": [
+    "Logistic",
+    "RandomForest",
+    "ExtraTrees",
+    "GradientBoosting"
+  ],
+  "best_cv": {
+    "model": "RandomForest",
+    "auc_mean": 0.7842013888888889,
+    "auc_std": 0.02752718997619458,
+    "auprc_mean": 0.7582912804596875,
+    "accuracy_mean": 0.716382322713258,
+    "f1_mean": 0.6851454140658582,
+    "feature_set": "full"
+  },
+  "importance_model": "RandomForest",
+  "importance_method": "mean_abs_shap",
+  "shap_model": "RandomForest",
+  "holdout_tree_full": {
+    "auc": 0.7874634502923976,
+    "auprc": 0.7754195870156871,
+    "accuracy": 0.7238095238095238,
+    "f1": 0.6979166666666666
+  },
+  "top_shap": [
+    {
+      "feature": "click_count",
+      "mean_abs_shap": 0.07635254156780237
+    },
+    {
+      "feature": "avg_click_position",
+      "mean_abs_shap": 0.04238875409171506
+    },
+    {
+      "feature": "active_click_days",
+      "mean_abs_shap": 0.04085671620237483
+    },
+    {
+      "feature": "avg_daily_clicks",
+      "mean_abs_shap": 0.03801214106181596
+    },
+    {
+      "feature": "headline_click_share",
+      "mean_abs_shap": 0.03395783067098901
+    },
+    {
+      "feature": "night_click_share",
+      "mean_abs_shap": 0.022654063248581
+    },
+    {
+      "feature": "unique_rec_categories",
+      "mean_abs_shap": 0.014705618071378112
+    },
+    {
+      "feature": "same_day_available_rows",
+      "mean_abs_shap": 0.0126620840972237
+    },
+    {
+      "feature": "rec_category_entropy",
+      "mean_abs_shap": 0.01238769246423503
+    },
+    {
+      "feature": "six_month_history_overlap_rate",
+      "mean_abs_shap": 0.009438858539780513
+    },
+    {
+      "feature": "rec_top_category_share",
+      "mean_abs_shap": 0.00728624345464782
+    },
+    {
+      "feature": "rec_publisher_entropy",
+      "mean_abs_shap": 0.007054629014172039
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "rq1_users": 698,
+  "rq1_users_jaccard_nonempty_preferences": 679,
+  "rq1_users_empty_stated_categories": 19,
+  "rq1_top_category_in_stated_pct": 77.22,
+  "rq1_mean_category_jaccard_top3": 0.2283,
+  "rq1_median_category_jaccard_top3": 0.2,
+  "rq1_mean_category_jaccard_top3_nonempty": 0.2347,
+  "rq1_median_category_jaccard_top3_nonempty": 0.2,
+  "rq1_mean_click_category_entropy": 0.5386,
+  "rq2_click_rows": 17232,
+  "rq2_same_day_available_rows": 11440,
+  "rq2_same_day_hit_pct": 11.29,
+  "rq2_ever_recommended_hit_pct": 14.37,
+  "rq2_users_with_exposure_and_clicks": 457,
+  "rq3_users": 1525,
+  "rq3_mean_rec_category_entropy": 0.8352,
+  "rq3_mean_click_category_entropy": 0.5401,
+  "rq3_mean_rec_top_category_share": 0.3704,
+  "rq3_mean_click_top_category_share": 0.6928,
+  "rq3_mean_rec_publisher_entropy": 0.9129,
+  "rq3_mean_click_publisher_entropy": 0.6256
+}
