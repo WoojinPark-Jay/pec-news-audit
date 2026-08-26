@@ -3,6 +3,23 @@
 These notebooks reconstruct the analysis step by step from private processed
 tables. They are intentionally output-stripped for repository release.
 
+## Public-package behavior
+
+The six notebooks document the authorized full rerun and are not the bundled
+public demo. If `data/processed/` is absent and neither
+`PEC_GAP_PROCESSED_DIR` nor `PEC_GAP_PRIVATE_ROOT` points to approved processed
+tables, notebooks 00--04 display a notice and skip their private-data cells
+without raising `FileNotFoundError`. Paths printed during execution refer to
+the reader's own extraction directory and are not stored author paths.
+
+For an end-to-end run using bundled data, use:
+
+```bash
+python scripts/run_public_synthetic_pipeline.py
+```
+
+or open `../01_metric_walkthrough_synthetic.ipynb`.
+
 Use this folder only in an approved internal environment where
 `data/processed/` contains the authorized processed CSV files. The notebooks
 should be read in order:

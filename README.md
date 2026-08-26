@@ -46,6 +46,15 @@ The repository keeps code, data access, and empirical claims separate:
    output-stripped `repro_deep` notebooks with approved processed platform
    tables stored outside this repository.
 
+The `repro_deep` notebooks are readable implementation walkthroughs, not
+public-data demos. When authorized processed tables are unavailable, they show
+one explanatory notice and skip private-data computation cells without an
+error. Use `01_metric_walkthrough_synthetic.ipynb` or
+`scripts/run_public_synthetic_pipeline.py` for a fully runnable public example.
+Any repository or data path printed after local execution is computed from the
+reader's own extraction directory; no author filesystem path is embedded in
+the output-stripped notebooks.
+
 The public demo is not a separately simplified analysis implementation. Both
 public and authorized runs import the core modules under `src/pecgap/`; what
 changes is the input contract and where outputs may be written.
