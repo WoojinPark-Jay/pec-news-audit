@@ -101,6 +101,30 @@ python -m pytest
 
 ## Repository Map
 
+### How the code folders differ
+
+- **`src/pecgap/`** contains the reusable Python source code. `src` is the
+  conventional abbreviation for *source*; it is not a separate data type or a
+  private-data folder. Metric definitions, preprocessing, audit calculations,
+  and modeling helpers live here.
+- **`scripts/`** contains command-line entry points that call the reusable
+  code in `src/pecgap/`. Use these files to run a complete public demo, check
+  released aggregates, rebuild figures, or validate an authorized input
+  folder. They should not duplicate the core formulas.
+- **`tests/`** contains automated checks of the source code. Tests use small
+  hand-built or synthetic inputs and confirm that metrics, labels, and the
+  public audit pipeline behave as expected. They are validation code, not
+  research data and not additional analyses.
+- **`notebooks/`** provides readable, ordered walkthroughs. Public notebooks
+  run on bundled synthetic or aggregate artifacts; `repro_deep/` documents the
+  authorized private rerun and skips private computations when those inputs
+  are unavailable.
+- **`data/synthetic/`** contains invented toy rows for execution examples,
+  while **`reports/`** contains approved aggregate tables and figure files.
+
+In short: `src` defines the analysis, `scripts` run it, `tests` verify it, and
+`notebooks` explain it.
+
 ```text
 src/pecgap/
   metrics.py              PEC metrics such as Jaccard, entropy, HHI, top-share, JS divergence
@@ -132,11 +156,19 @@ scripts/
   run_repro_deep_notebooks.py
   run_rq2_clustered_uncertainty.py
 
+tests/
+  test_metrics.py                 Unit checks for PEC metric definitions
+  test_modeling_labels.py         Checks for diagnostic-label construction
+  test_synthetic_audit_pipeline.py End-to-end check on bundled toy records
+
 docs/
   DATA_RELEASE_POLICY.md
   REPRODUCIBILITY.md
   METRIC_GUIDE.md
   ARTIFACT_GUIDE.md
+
+requirements.txt          Runtime dependency list
+pyproject.toml             Installable package and test configuration
 ```
 
 ## Release-Safe Data

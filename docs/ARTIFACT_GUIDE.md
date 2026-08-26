@@ -2,6 +2,23 @@
 
 This guide explains what each public artifact is meant to support.
 
+## Code and Validation Folders
+
+- `src/pecgap/` is the reusable source-code package. It contains the metric,
+  preprocessing, audit-pipeline, artifact, and diagnostic-model functions.
+- `scripts/` contains executable entry points that import and orchestrate the
+  source package for a specific task.
+- `tests/` contains automated validation checks using synthetic or hand-built
+  inputs. Test files do not contain operational user data and do not add new
+  empirical claims.
+- `notebooks/` contains human-readable walkthroughs. The bundled public
+  examples use synthetic or aggregate artifacts; the `repro_deep/` notebooks
+  require authorized processed inputs for their private computation cells.
+
+The separation is intentional: the formulas live once in `src/pecgap/`, while
+scripts, tests, and notebooks call the same implementation for different
+purposes.
+
 ## Public Tables
 
 The files in `reports/tables/` are aggregate outputs used to inspect manuscript-level claims. They are not row-level user traces.
