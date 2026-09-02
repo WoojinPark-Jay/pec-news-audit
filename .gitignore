@@ -5,6 +5,16 @@ __pycache__/
 .python_packages/
 .pytest_cache/
 .ipynb_checkpoints/
+*.egg-info/
+build/
+dist/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+.env
+.env.*
+!.env.example
 
 # Private data and local reruns
 data/raw/

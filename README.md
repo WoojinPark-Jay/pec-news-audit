@@ -99,6 +99,12 @@ Run tests:
 python -m pytest
 ```
 
+To open or execute the notebooks, install the notebook tools as well:
+
+```bash
+python -m pip install -e '.[notebook]'
+```
+
 ## Repository Map
 
 ### How the code folders differ
