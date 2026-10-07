@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>PEC Gap</title>
+  <path d="M22.5 21.5 25.5 24.5M38.5 39.5 41.5 42.5" fill="none" stroke="#a8adb1" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="16" cy="15" r="10" fill="#202428"/>
+  <circle cx="32" cy="32" r="10" fill="#fff" stroke="#8b1f35" stroke-width="2.5"/>
+  <circle cx="48" cy="49" r="10" fill="#202428"/>
+  <text x="16" y="18.5" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="700" fill="#fff">P</text>
+  <text x="32" y="35.5" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="700" fill="#8b1f35">E</text>
+  <text x="48" y="52.5" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="700" fill="#fff">C</text>
+</svg>
