@@ -11,6 +11,8 @@ This repository accompanies a measurement audit of a deployed mobile news recomm
 - **Surface pathways (S):** app entry paths such as headline, category, home/feed, newsroom, article detail, search, and notifications.
 - **Consumption (C):** observed article clicks.
 
+Project page: **[PEC News Audit](https://woojinpark-jay.github.io/pec-news-audit/)**
+
 The main purpose of this repository is to make the public parts of the audit inspectable without releasing private user-level logs. It provides metric code, aggregate result tables, figure artifacts, release-safe notebooks, and synthetic schemas. Raw operational logs, row-level recommendation lists, user click histories, profile snapshots, and production identifiers are not included.
 
 ## What You Can Do With This Repository

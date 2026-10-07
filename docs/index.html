@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>When Exposure Is Not Attention | PEC Audit</title>
+  <meta name="description" content="A Preference-Exposure-Consumption audit of personalized news recommendation under explicit observability boundaries.">
+  <meta name="theme-color" content="#ffffff">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="When Exposure Is Not Attention">
+  <meta property="og:description" content="Auditing the Preference-Exposure-Consumption gap in personalized news recommenders.">
+  <meta property="og:url" content="https://woojinpark-jay.github.io/pec-news-audit/">
+  <meta property="og:image" content="https://woojinpark-jay.github.io/pec-news-audit/assets/project/pec-framework.png">
+  <script>try{document.documentElement.dataset.theme=localStorage.getItem('pec-theme')||'light'}catch(e){document.documentElement.dataset.theme='light'}</script>
+  <script>window.MathJax={tex:{inlineMath:[['\\(','\\)']]},svg:{fontCache:'global'}};</script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <link rel="stylesheet" href="project.css?v=3">
+</head>
+<body>
+  <header class="site-header">
+    <a class="wordmark" href="#top" aria-label="PEC audit home"><span>PEC</span> audit</a>
+    <nav aria-label="Project navigation">
+      <a href="#overview">Overview</a>
+      <a href="#protocol">Protocol</a>
+      <a href="#findings">Findings</a>
+      <a href="#artifacts">Artifacts</a>
+      <button id="theme-toggle" type="button" aria-label="Switch color theme"><span aria-hidden="true">◐</span> Theme</button>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <p class="eyebrow">AAAI ICWSM 2027 · Full paper submission</p>
+      <h1>When Exposure<br>Is Not Attention</h1>
+      <p class="dek">Auditing the Preference–Exposure–Consumption Gap<br class="wide-only"> in Personalized News Recommenders</p>
+      <div class="author-line">
+        <a href="https://woojinpark-jay.github.io/">Woojin Park</a>
+        <span>·</span>
+        <a href="https://www.korea.ac.kr/en/index.do">Korea University</a>
+      </div>
+      <div class="actions" aria-label="Project links">
+        <span class="button button-muted" title="The arXiv link will be added after announcement">Preprint · soon</span>
+        <a class="button" href="https://github.com/WoojinPark-Jay/pec-news-audit">Code &amp; artifacts</a>
+        <a class="button button-quiet" href="https://woojinpark-jay.github.io/">Author page</a>
+      </div>
+      <p class="hero-note">A measurement audit for separating what users say, what systems log, and what people click.</p>
+    </section>
+
+    <section class="framework-wrap" aria-label="PEC audit framework">
+      <button class="figure-button" type="button" data-lightbox="assets/project/pec-framework.png" aria-label="Enlarge PEC audit framework">
+        <img src="assets/project/pec-framework.png" alt="PEC framework linking platform traces to preference, logged exposure, surface mediation, consumption, and four audit outputs">
+      </button>
+      <p class="caption">The framework treats preference, logged exposure, surface mediation, and click consumption as distinct observable layers rather than a single sequential pipeline.</p>
+    </section>
+
+    <section class="section" id="overview">
+      <div class="section-label">01 · Overview</div>
+      <div class="two-col intro-grid">
+        <div>
+          <h2>One platform can tell four different stories.</h2>
+        </div>
+        <div class="prose">
+          <p>Personalized news systems are often evaluated as if stated preferences, logged recommendation exposure, and click consumption were interchangeable. They are not. Each trace answers a different question, uses a different eligible denominator, and supports a different class of claims.</p>
+          <p>PEC is a relation-specific audit protocol. It connects preference (P), logged exposure (E), interface surfaces (S), and consumption (C) while making the platform's observability boundaries explicit.</p>
+        </div>
+      </div>
+      <div class="stat-grid" aria-label="Study scale">
+        <div><strong>6</strong><span>months of logs</span></div>
+        <div><strong>1,583</strong><span>user profiles</span></div>
+        <div><strong>95,143</strong><span>logged recommendation items</span></div>
+        <div><strong>17,512</strong><span>click events</span></div>
+      </div>
+    </section>
+
+    <section class="section" id="protocol">
+      <div class="section-label">02 · Audit protocol</div>
+      <div class="section-head">
+        <h2>Separate the layers before comparing them.</h2>
+        <p>Every output is tied to a relation, a denominator, a validity control, and a bounded interpretation.</p>
+      </div>
+
+      <div class="layer-grid">
+        <article class="layer-card layer-p"><span>P</span><h3>Preference</h3><p>Stated categories, preferred sources, and the observed weighted profile state.</p></article>
+        <article class="layer-card layer-e"><span>E</span><h3>Logged exposure</h3><p>User-date ranked lists and item-level recommendation records available in the logs.</p></article>
+        <article class="layer-card layer-s"><span>S</span><h3>Surface context</h3><p>Headline, category, home/feed, newsroom, article detail, search, and other entry routes.</p></article>
+        <article class="layer-card layer-c"><span>C</span><h3>Consumption</h3><p>Clicked articles and their category, publisher, time, and surface metadata.</p></article>
+      </div>
+
+      <div class="protocol-table-wrap full-protocol">
+        <div class="table-title">Protocol 1: PEC audit protocol</div>
+        <table class="protocol-table">
+          <thead><tr><th>Phase</th><th>Layer / relation</th><th>Operation</th><th>Audit role</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>P: Preference</td><td>Build stated-preference sets and weighted profile-state distributions.</td><td>Preference layer</td></tr>
+            <tr><td>1</td><td>E: Logged exposure</td><td>Build user-date recommendation sets, ranks, and exposure unions.</td><td>Exposure layer</td></tr>
+            <tr><td>1</td><td>S: Surfaces</td><td>Assign click-time entry pathways from interface metadata.</td><td>Surface-context layer</td></tr>
+            <tr><td>1</td><td>C: Consumption</td><td>Build clicked-item sets and click distributions linked to article metadata.</td><td>Consumption layer</td></tr>
+            <tr><td>2</td><td>P ↔ C</td><td>Compute top-category match, Jaccard overlap, cosine similarity, and JS divergence.</td><td>Preference–consumption alignment</td></tr>
+            <tr><td>2</td><td>E ↔ C</td><td>Trace clicks to same-day lists, exposure history, candidate-pool baselines, and popularity-aware baselines.</td><td>Exposure–consumption traceability</td></tr>
+            <tr><td>2</td><td>E ↔ C</td><td>Count-match exposure to clicks; compute entropy, HHI, top share, effective categories, and JS divergence.</td><td>Diversity shift</td></tr>
+            <tr><td>2</td><td>P, E, C</td><td>Fit bounded diagnostic models excluding direct alignment quantities.</td><td>Structured divergence</td></tr>
+            <tr><td>3</td><td>Output</td><td>Pair each empirical claim with its observability boundary.</td><td>Audit report</td></tr>
+          </tbody>
+        </table>
+        <p class="table-note"><em>Note.</em> Protocol 1 separates what is observed, what is compared, and what remains outside the observable scope of the logs.</p>
+      </div>
+      <p class="boundary-note"><strong>Boundary:</strong> PEC is a measurement protocol. It is not a ranking objective, a causal estimate, or a production targeting procedure.</p>
+
+      <div class="protocol-table-wrap metrics-table-wrap">
+        <div class="table-title">Table 2: Metrics used to operationalize the PEC audit</div>
+        <table class="protocol-table metrics-table">
+          <thead><tr><th>Audit quantity</th><th>Operational equation</th></tr></thead>
+          <tbody>
+            <tr><td>Category Jaccard</td><td>\(J_u=\dfrac{|P^{cat}_u\cap C^{top}_{cat}(u)|}{|P^{cat}_u\cup C^{top}_{cat}(u)|}\)</td></tr>
+            <tr><td>Divergence</td><td>\(D_u=1-J_u\)</td></tr>
+            <tr><td>Preference-click cosine</td><td>\(A_u=\cos(p^{cat}_{u,P},p^{cat}_{u,C})\)</td></tr>
+            <tr><td>Same-day hit</td><td>\(H_{ui}=\mathbf{1}\{i\in E(u,\operatorname{date}(i))\}\)</td></tr>
+            <tr><td>Top-\(k\) lift</td><td>\(\mathrm{Lift}_k=\dfrac{\mathbb{E}[H^k_{obs}]}{\mathbb{E}[H^k_{base}]}\)</td></tr>
+            <tr><td>Normalized entropy</td><td>\(H_{\mathrm{norm}}(X)=-\sum_xp_x\log(p_x)/\log|X^+|,\quad X^+=\{x:p_x&gt;0\}\)</td></tr>
+            <tr><td>HHI / top share</td><td>\(\mathrm{HHI}(X)=\sum_xp_x^2,\qquad \mathrm{TopShare}(X)=\max_xp_x\)</td></tr>
+            <tr><td>JS divergence</td><td>\(\mathrm{JS}_2(p,q)=\tfrac12\mathrm{KL}_2(p\parallel m)+\tfrac12\mathrm{KL}_2(q\parallel m),\quad m=\tfrac{p+q}{2}\)</td></tr>
+            <tr><td>Count-matched narrowing</td><td>\(\Delta H_{\mathrm{norm}}=H_{\mathrm{norm}}(E'_u)-H_{\mathrm{norm}}(C_u);\; \Delta\mathrm{HHI}=\mathrm{HHI}(C_u)-\mathrm{HHI}(E'_u);\; |E'_u|=|C_u|\)</td></tr>
+          </tbody>
+        </table>
+        <p class="table-note"><em>Note.</em> \(C^{top}_{cat}(u)\) is the user's top three clicked categories, or fewer when fewer are observed. \(E'_u\) is sampled from the user's logged-exposure union. PEC reports divergence, not its square-root distance.</p>
+      </div>
+    </section>
+
+    <section class="section" id="findings">
+      <div class="section-label">03 · Findings</div>
+      <div class="section-head">
+        <h2>Four views of the same system.</h2>
+        <p>The conclusions change with the layer being measured.</p>
+      </div>
+
+      <article class="finding">
+        <div class="finding-copy">
+          <p class="finding-index">RQ1 · Preference</p>
+          <h3>Stated preferences are informative, but incomplete.</h3>
+          <p>The top consumed category appears in stated interests for <strong>77.22%</strong> of eligible users, above chance-based nulls. Mean category Jaccard is only <strong>0.228</strong>, showing that dominant interests do not capture the broader consumption set.</p>
+          <div class="mini-metrics"><span><b>77.22%</b> top-category match</span><span><b>0.228</b> mean Jaccard</span></div>
+        </div>
+        <button class="paper-figure" type="button" data-lightbox="assets/project/preference-alignment.png" aria-label="Enlarge preference-consumption diagnostics">
+          <img src="assets/project/preference-alignment.png" alt="Preference-consumption diagnostics for category recovery, Jaccard overlap, and cosine similarity">
+        </button>
+      </article>
+
+      <article class="finding finding-reverse">
+        <div class="finding-copy">
+          <p class="finding-index">RQ2 · Traceability</p>
+          <h3>Logged recommendation exposure carries signal, not complete attention.</h3>
+          <p>Only <strong>11.29%</strong> of comparable clicks appear in the same-day logged recommendation list, versus a <strong>9.13%</strong> date-matched candidate-pool expectation. Top-5 lift reaches <strong>1.47×</strong>, while most clicks arrive through other surfaces.</p>
+          <div class="mini-metrics"><span><b>11.29%</b> observed hit</span><span><b>1.47×</b> top-5 lift</span></div>
+        </div>
+        <button class="paper-figure" type="button" data-lightbox="assets/project/surface-traceability.png" aria-label="Enlarge multi-surface click traceability figure">
+          <img src="assets/project/surface-traceability.png" alt="Multi-surface click composition and observed same-day traceability against date-matched baselines">
+        </button>
+      </article>
+
+      <article class="finding">
+        <div class="finding-copy">
+          <p class="finding-index">RQ3 · Diversity</p>
+          <h3>Diversity depends on the measurement layer.</h3>
+          <p>Logged exposure is broader than click consumption in the raw logs. Count matching removes much of the entropy gap, yet the audit-eligible cohort retains an <strong>HHI gap of 0.082</strong> and <strong>JS divergence of 0.471</strong>.</p>
+          <div class="mini-metrics"><span><b>0.082</b> HHI gap</span><span><b>0.471</b> JS divergence</span></div>
+        </div>
+        <button class="paper-figure" type="button" data-lightbox="assets/project/diversity-audit.png" aria-label="Enlarge diversity and concentration audit figure">
+          <img src="assets/project/diversity-audit.png" alt="Raw diversity shift, count-matched entropy gaps, and residual concentration mismatch">
+        </button>
+      </article>
+
+      <article class="finding finding-reverse">
+        <div class="finding-copy">
+          <p class="finding-index">RQ4 · Divergence</p>
+          <h3>The gap is structured, but the signal is bounded.</h3>
+          <p>Same-window diagnostic AUC reaches <strong>0.859</strong> with weighted profile-state features. It falls to <strong>0.731</strong> in the time-split diagnostic and below <strong>0.71</strong> in denser-history cohorts, limiting operational interpretation.</p>
+          <div class="mini-metrics"><span><b>0.859</b> same-window AUC</span><span><b>0.731</b> time-split AUC</span></div>
+        </div>
+        <button class="paper-figure" type="button" data-lightbox="assets/project/bounded-signal.png" aria-label="Enlarge bounded audit signal figure">
+          <img src="assets/project/bounded-signal.png" alt="Diagnostic AUC across same-window, temporal, dense-history, and ablation checks">
+        </button>
+      </article>
+    </section>
+
+    <section class="section" id="artifacts">
+      <div class="section-label">04 · Reproducibility</div>
+      <div class="two-col artifact-grid">
+        <div>
+          <h2>Reproducible where the data can safely travel.</h2>
+          <p class="lead">The public artifact exposes metric implementations, aggregate tables, synthetic schemas, figure-generation code, and authorized rerun instructions without redistributing private behavioral traces.</p>
+          <div class="actions">
+            <a class="button" href="https://github.com/WoojinPark-Jay/pec-news-audit">Open repository</a>
+            <a class="button button-quiet" href="https://github.com/WoojinPark-Jay/pec-news-audit/blob/main/docs/REPRODUCIBILITY.md">Reproducibility notes</a>
+          </div>
+        </div>
+        <div class="artifact-list">
+          <div><span>Public</span><p>Audit metrics, release-safe aggregate tables, synthetic examples, notebooks, and figure builders.</p></div>
+          <div><span>Protected</span><p>Raw operational logs, row-level click histories, recommendation lists, user profiles, and model feature rows.</p></div>
+          <div><span>Interpretation</span><p>Observational measurement claims only; no causal ranking effect, verified impression, or total-attention claim.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section citation" id="citation">
+      <div class="section-label">05 · Citation</div>
+      <h2>BibTeX</h2>
+      <div class="code-wrap">
+        <button id="copy-citation" type="button">Copy</button>
+        <pre><code id="bibtex">@article{park2026exposure,
+  title   = {When Exposure Is Not Attention: Auditing the
+             Preference--Exposure--Consumption Gap in
+             Personalized News Recommenders},
+  author  = {Park, Woojin},
+  year    = {2026},
+  note    = {Preprint}
+}</code></pre>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>PEC audit · 2026</p>
+    <div><a href="https://woojinpark-jay.github.io/">Woojin Park</a><a href="https://github.com/WoojinPark-Jay/pec-news-audit">GitHub</a><a href="#top">Back to top ↑</a></div>
+  </footer>
+
+  <dialog id="lightbox" aria-label="Expanded paper figure">
+    <button class="lightbox-close" type="button" aria-label="Close figure">×</button>
+    <img src="" alt="Expanded paper figure">
+  </dialog>
+  <script src="project.js?v=3"></script>
+</body>
+</html>
