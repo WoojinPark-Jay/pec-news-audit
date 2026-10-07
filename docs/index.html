@@ -12,7 +12,7 @@
   <meta property="og:url" content="https://woojinpark-jay.github.io/pec-news-audit/">
   <meta property="og:image" content="https://woojinpark-jay.github.io/pec-news-audit/assets/project/pec-framework.png">
   <script>try{document.documentElement.dataset.theme=localStorage.getItem('pec-theme')||'light'}catch(e){document.documentElement.dataset.theme='light'}</script>
-  <link rel="stylesheet" href="project.css?v=4">
+  <link rel="stylesheet" href="project.css?v=5">
 </head>
 <body>
   <header class="site-header">
@@ -28,14 +28,12 @@
 
   <main id="top">
     <section class="hero">
-      <p class="eyebrow">AAAI ICWSM 2027 · Full paper submission</p>
-      <h1>When Exposure Is Not Attention</h1>
-      <p class="dek">Auditing the Preference–Exposure–Consumption Gap<br class="wide-only"> in Personalized News Recommenders</p>
+      <h1><strong>When Exposure Is Not Attention:</strong><br><span>Auditing the Preference–Exposure–Consumption Gap in Personalized News Recommenders</span></h1>
       <div class="author-line">
         <a href="https://woojinpark-jay.github.io/">Woojin Park</a>
-        <span>·</span>
-        <a href="https://www.korea.ac.kr/en/index.do">Korea University</a>
       </div>
+      <p class="affiliation"><a href="https://www.korea.ac.kr/en/index.do">Korea University</a></p>
+      <p class="venue">AAAI ICWSM 2027 · Full paper submission</p>
       <div class="actions" aria-label="Project links">
         <span class="button button-muted" title="The arXiv link will be added after announcement">Preprint · soon</span>
         <a class="button" href="https://github.com/WoojinPark-Jay/pec-news-audit">Code &amp; artifacts</a>
@@ -49,15 +47,10 @@
         <h2>Abstract</h2>
         <p>Personalized news platforms are often evaluated as if stated preferences, logged recommendation exposure, and click consumption form a single coherent pipeline. Collapsing these layers can distort audit conclusions: a platform may appear more aligned or diverse than observed click consumption supports, which can misdirect diversity governance or algorithmic intervention. We introduce a reusable Preference–Exposure–Consumption (PEC) audit framework that separates stated preference, observed weighted profile state, logged recommendation exposure, app-surface pathways, and click consumption under explicit observability boundaries. Using six months of logs from a deployed mobile news application, we audit 1,583 user profiles, 95,143 logged recommendation items, and 17,512 click events. Each trace type contributes distinct information; none directly substitutes for another. Preference–consumption alignment exceeds chance-based null baselines but captures only part of users' top-consumed category set. Logged recommendation lists contain clicked articles more often than a date-matched candidate-pool baseline predicts (11.29% vs. 9.13%; top-5 lift 1.47×), but many clicks arrive through other app surfaces. Raw exposure–consumption diversity gaps shrink under count matching, yet concentration mismatch persists in the audit-eligible cohort (HHI gap 0.082). Together, the results show that audit conclusions change depending on whether platforms measure stated preference, logged exposure, or click consumption.</p>
       </div>
-      <div class="stat-grid" aria-label="Study scale">
-        <div><strong>6</strong><span>months of logs</span></div>
-        <div><strong>1,583</strong><span>user profiles</span></div>
-        <div><strong>95,143</strong><span>logged recommendation items</span></div>
-        <div><strong>17,512</strong><span>click events</span></div>
-      </div>
     </section>
 
     <section class="framework-wrap" aria-label="PEC audit framework">
+      <h2>PEC Audit Framework</h2>
       <button class="figure-button" type="button" data-lightbox="assets/project/pec-framework.png" aria-label="Enlarge PEC audit framework">
         <img src="assets/project/pec-framework.png" alt="PEC framework linking platform traces to preference, logged exposure, surface mediation, consumption, and four audit outputs">
       </button>
@@ -67,7 +60,7 @@
     <section class="section" id="protocol">
       <div class="section-label">02 · Audit protocol</div>
       <div class="section-head">
-        <h2>Separate the layers before comparing them.</h2>
+        <h2>PEC Audit Protocol</h2>
         <p>Every output is tied to a relation, a denominator, a validity control, and a bounded interpretation.</p>
       </div>
 
@@ -85,7 +78,7 @@
     <section class="section" id="findings">
       <div class="section-label">03 · Findings</div>
       <div class="section-head">
-        <h2>Four views of the same system.</h2>
+        <h2>Key Findings</h2>
         <p>The conclusions change with the layer being measured.</p>
       </div>
 
@@ -136,6 +129,11 @@
           <img src="assets/project/bounded-signal.png" alt="Diagnostic AUC across same-window, temporal, dense-history, and ablation checks">
         </button>
       </article>
+
+      <div class="takeaway">
+        <h3>Key takeaway</h3>
+        <p>Preferences, logged recommendation exposure, interface pathways, and clicks are informative but non-substitutable traces. The apparent alignment and diversity of the same recommender changes with the layer being measured, so every audit claim should name its observable trace, eligible denominator, and interpretation boundary.</p>
+      </div>
     </section>
 
     <section class="section" id="artifacts">
@@ -183,6 +181,6 @@
     <button class="lightbox-close" type="button" aria-label="Close figure">×</button>
     <img src="" alt="Expanded paper figure">
   </dialog>
-  <script src="project.js?v=4"></script>
+  <script src="project.js?v=5"></script>
 </body>
 </html>
