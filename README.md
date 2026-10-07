@@ -1,5 +1,12 @@
 # PEC News Audit
 
+## [Open the project page →](https://woojinpark-jay.github.io/pec-news-audit/)
+
+The project page presents the paper's abstract, PEC audit framework, protocol,
+main findings, and public research artifacts in one concise visual overview.
+Use this repository for the release-safe code, aggregate tables, synthetic
+examples, and reproducibility documentation behind that overview.
+
 Release artifacts for the manuscript:
 
 **When Exposure Is Not Attention: Auditing the Preference-Exposure-Consumption Gap in Personalized News Recommenders**
@@ -10,8 +17,6 @@ This repository accompanies a measurement audit of a deployed mobile news recomm
 - **Exposure (E):** logged recommendation lists.
 - **Surface pathways (S):** app entry paths such as headline, category, home/feed, newsroom, article detail, search, and notifications.
 - **Consumption (C):** observed article clicks.
-
-Project page: **[PEC News Audit](https://woojinpark-jay.github.io/pec-news-audit/)**
 
 The main purpose of this repository is to make the public parts of the audit inspectable without releasing private user-level logs. It provides metric code, aggregate result tables, figure artifacts, release-safe notebooks, and synthetic schemas. Raw operational logs, row-level recommendation lists, user click histories, profile snapshots, and production identifiers are not included.
 
