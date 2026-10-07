@@ -23,13 +23,12 @@ The main purpose of this repository is to make the public parts of the audit ins
 
 This repository is not a public benchmark dataset and does not contain behavioral traces from real users.
 
-## Double-Blind Review Note
+## Public Release Status
 
-The repository is technically prepared for public release, but an
-identity-bearing GitHub URL should not be linked from a double-blind
-submission. Keep this repository private during review, or use a separate
-venue-approved anonymous artifact snapshot. Publicize and complete author
-citation metadata only when the venue permits de-anonymization.
+This repository provides release-safe research artifacts for a manuscript
+currently under review. The submitted manuscript remains anonymized in
+accordance with the venue's double-blind review requirements. The repository
+contains no raw operational logs or row-level behavioral data.
 
 ## Three Reproduction Levels
 
@@ -227,6 +226,6 @@ data or manuscript result tables.
 
 ## Citation
 
-Citation metadata is intentionally anonymized during double-blind review and
-will be completed when the venue permits de-anonymization. See
-[CITATION.cff](CITATION.cff).
+Citation metadata for this research artifact is provided in
+[CITATION.cff](CITATION.cff). The manuscript is currently under review; do not
+describe it as accepted or published unless its status changes.

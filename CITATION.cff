@@ -1,10 +1,14 @@
 cff-version: 1.2.0
 title: "PEC Gap News Audit"
-message: "Citation metadata is anonymized for double-blind review and will be completed after de-anonymization is permitted."
+message: "If you use this research artifact, please cite the accompanying manuscript and this repository. The manuscript is currently under review."
 type: software
 authors:
-  - family-names: "Anonymous"
-    given-names: "Author"
+  - family-names: "Park"
+    given-names: "Woojin"
+    orcid: "https://orcid.org/0009-0000-7183-5572"
+    affiliation: "Korea University"
 abstract: "Research artifact package for auditing Preference-Exposure-Consumption gaps in personalized news recommenders."
 license: "MIT"
 version: "0.3.0"
+date-released: "2026-10-07"
+repository-code: "https://github.com/WoojinPark-Jay/pec-news-audit"
