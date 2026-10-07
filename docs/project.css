@@ -78,7 +78,7 @@ main, footer { width: min(calc(100% - 48px), var(--max)); margin-inline: auto; }
 }
 .figure-button img, .paper-figure img { width: 100%; }
 .caption { max-width: 720px; margin: 7px auto 0; color: var(--ink); font-family: Georgia, "Times New Roman", serif; font-size: .8rem; text-align: center; }
-.section { padding: 30px 0; border-top: 1px solid var(--line); scroll-margin-top: 52px; }
+.section { padding: 30px 0; scroll-margin-top: 52px; }
 .section h2 {
   margin: 0; font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(1.65rem, 3vw, 2.1rem); font-weight: 600;
@@ -124,8 +124,7 @@ main, footer { width: min(calc(100% - 48px), var(--max)); margin-inline: auto; }
 .paper-table-stack { display: grid; gap: 14px; max-width: 820px; margin: 14px auto 0; }
 .paper-table-image { width: 100%; margin: 0; padding: 0; border: 0; background: #fff; cursor: zoom-in; }
 .paper-table-image img { width: 100%; }
-.finding { display: grid; grid-template-columns: 1.35fr .65fr; align-items: center; gap: 28px; padding: 18px 0; border-top: 1px solid var(--line); }
-.finding:first-of-type { border-top: 0; }
+.finding { display: grid; grid-template-columns: 1.35fr .65fr; align-items: center; gap: 28px; padding: 18px 0; }
 .finding-reverse { grid-template-columns: .65fr 1.35fr; }
 .finding-reverse .finding-copy { order: 2; } .finding-reverse .paper-figure { order: 1; justify-self: start; }
 .finding-index { margin-bottom: 10px; }
@@ -134,15 +133,15 @@ main, footer { width: min(calc(100% - 48px), var(--max)); margin-inline: auto; }
 .finding-copy strong { color: var(--ink); }
 .paper-figure { max-width: 330px; border-radius: 1px; justify-self: end; }
 .paper-figure img { width: 100%; max-height: 245px; object-fit: contain; background: #fff; }
-.mini-metrics { display: flex; gap: 18px; margin-top: 19px; padding-top: 14px; border-top: 1px solid var(--line); }
+.mini-metrics { display: flex; gap: 18px; margin-top: 16px; }
 .mini-metrics span { color: var(--muted); font-size: .64rem; text-transform: uppercase; letter-spacing: .05em; }
 .mini-metrics b { display: block; margin-bottom: 1px; color: var(--ink); font-family: Georgia, serif; font-size: 1.3rem; font-weight: 400; letter-spacing: 0; }
-.takeaway { display: grid; grid-template-columns: 150px 1fr; gap: 28px; margin-top: 6px; padding: 20px 0 0; border-top: 1px solid var(--ink); }
+.takeaway { display: grid; grid-template-columns: 150px 1fr; gap: 28px; margin-top: 10px; padding: 17px 19px; background: var(--surface); }
 .takeaway h3 { margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: 1.35rem; }
 .takeaway p { max-width: 900px; margin: 0; color: var(--ink); font-size: .98rem; }
 .artifact-grid .lead { margin: 18px 0 0; }
-.artifact-list { border-top: 1px solid var(--line); }
-.artifact-list div { display: grid; grid-template-columns: 88px 1fr; gap: 18px; padding: 15px 0; border-bottom: 1px solid var(--line); }
+.artifact-list { display: grid; gap: 13px; margin-top: 18px; }
+.artifact-list div { display: grid; grid-template-columns: 88px 1fr; gap: 18px; padding: 0; }
 .artifact-list span { color: var(--accent); font-size: .65rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; }
 .artifact-list p { margin: 0; color: var(--ink); font-size: .82rem; }
 .citation h2 { margin-bottom: 20px; }
