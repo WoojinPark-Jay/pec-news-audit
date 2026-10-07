@@ -12,15 +12,13 @@
   <meta property="og:url" content="https://woojinpark-jay.github.io/pec-news-audit/">
   <meta property="og:image" content="https://woojinpark-jay.github.io/pec-news-audit/assets/project/pec-framework.png">
   <script>try{document.documentElement.dataset.theme=localStorage.getItem('pec-theme')||'light'}catch(e){document.documentElement.dataset.theme='light'}</script>
-  <script>window.MathJax={tex:{inlineMath:[['\\(','\\)']]},svg:{fontCache:'global'}};</script>
-  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
-  <link rel="stylesheet" href="project.css?v=3">
+  <link rel="stylesheet" href="project.css?v=4">
 </head>
 <body>
   <header class="site-header">
     <a class="wordmark" href="#top" aria-label="PEC audit home"><span>PEC</span> audit</a>
     <nav aria-label="Project navigation">
-      <a href="#overview">Overview</a>
+      <a href="#overview">Abstract</a>
       <a href="#protocol">Protocol</a>
       <a href="#findings">Findings</a>
       <a href="#artifacts">Artifacts</a>
@@ -31,7 +29,7 @@
   <main id="top">
     <section class="hero">
       <p class="eyebrow">AAAI ICWSM 2027 · Full paper submission</p>
-      <h1>When Exposure<br>Is Not Attention</h1>
+      <h1>When Exposure Is Not Attention</h1>
       <p class="dek">Auditing the Preference–Exposure–Consumption Gap<br class="wide-only"> in Personalized News Recommenders</p>
       <div class="author-line">
         <a href="https://woojinpark-jay.github.io/">Woojin Park</a>
@@ -43,26 +41,13 @@
         <a class="button" href="https://github.com/WoojinPark-Jay/pec-news-audit">Code &amp; artifacts</a>
         <a class="button button-quiet" href="https://woojinpark-jay.github.io/">Author page</a>
       </div>
-      <p class="hero-note">A measurement audit for separating what users say, what systems log, and what people click.</p>
-    </section>
-
-    <section class="framework-wrap" aria-label="PEC audit framework">
-      <button class="figure-button" type="button" data-lightbox="assets/project/pec-framework.png" aria-label="Enlarge PEC audit framework">
-        <img src="assets/project/pec-framework.png" alt="PEC framework linking platform traces to preference, logged exposure, surface mediation, consumption, and four audit outputs">
-      </button>
-      <p class="caption">The framework treats preference, logged exposure, surface mediation, and click consumption as distinct observable layers rather than a single sequential pipeline.</p>
     </section>
 
     <section class="section" id="overview">
-      <div class="section-label">01 · Overview</div>
-      <div class="two-col intro-grid">
-        <div>
-          <h2>One platform can tell four different stories.</h2>
-        </div>
-        <div class="prose">
-          <p>Personalized news systems are often evaluated as if stated preferences, logged recommendation exposure, and click consumption were interchangeable. They are not. Each trace answers a different question, uses a different eligible denominator, and supports a different class of claims.</p>
-          <p>PEC is a relation-specific audit protocol. It connects preference (P), logged exposure (E), interface surfaces (S), and consumption (C) while making the platform's observability boundaries explicit.</p>
-        </div>
+      <div class="section-label">01 · Abstract</div>
+      <div class="abstract-block">
+        <h2>Abstract</h2>
+        <p>Personalized news platforms are often evaluated as if stated preferences, logged recommendation exposure, and click consumption form a single coherent pipeline. Collapsing these layers can distort audit conclusions: a platform may appear more aligned or diverse than observed click consumption supports, which can misdirect diversity governance or algorithmic intervention. We introduce a reusable Preference–Exposure–Consumption (PEC) audit framework that separates stated preference, observed weighted profile state, logged recommendation exposure, app-surface pathways, and click consumption under explicit observability boundaries. Using six months of logs from a deployed mobile news application, we audit 1,583 user profiles, 95,143 logged recommendation items, and 17,512 click events. Each trace type contributes distinct information; none directly substitutes for another. Preference–consumption alignment exceeds chance-based null baselines but captures only part of users' top-consumed category set. Logged recommendation lists contain clicked articles more often than a date-matched candidate-pool baseline predicts (11.29% vs. 9.13%; top-5 lift 1.47×), but many clicks arrive through other app surfaces. Raw exposure–consumption diversity gaps shrink under count matching, yet concentration mismatch persists in the audit-eligible cohort (HHI gap 0.082). Together, the results show that audit conclusions change depending on whether platforms measure stated preference, logged exposure, or click consumption.</p>
       </div>
       <div class="stat-grid" aria-label="Study scale">
         <div><strong>6</strong><span>months of logs</span></div>
@@ -72,6 +57,13 @@
       </div>
     </section>
 
+    <section class="framework-wrap" aria-label="PEC audit framework">
+      <button class="figure-button" type="button" data-lightbox="assets/project/pec-framework.png" aria-label="Enlarge PEC audit framework">
+        <img src="assets/project/pec-framework.png" alt="PEC framework linking platform traces to preference, logged exposure, surface mediation, consumption, and four audit outputs">
+      </button>
+      <p class="caption">Figure 1. PEC audit framework and relation-specific observability boundaries.</p>
+    </section>
+
     <section class="section" id="protocol">
       <div class="section-label">02 · Audit protocol</div>
       <div class="section-head">
@@ -79,51 +71,15 @@
         <p>Every output is tied to a relation, a denominator, a validity control, and a bounded interpretation.</p>
       </div>
 
-      <div class="layer-grid">
-        <article class="layer-card layer-p"><span>P</span><h3>Preference</h3><p>Stated categories, preferred sources, and the observed weighted profile state.</p></article>
-        <article class="layer-card layer-e"><span>E</span><h3>Logged exposure</h3><p>User-date ranked lists and item-level recommendation records available in the logs.</p></article>
-        <article class="layer-card layer-s"><span>S</span><h3>Surface context</h3><p>Headline, category, home/feed, newsroom, article detail, search, and other entry routes.</p></article>
-        <article class="layer-card layer-c"><span>C</span><h3>Consumption</h3><p>Clicked articles and their category, publisher, time, and surface metadata.</p></article>
-      </div>
-
-      <div class="protocol-table-wrap full-protocol">
-        <div class="table-title">Protocol 1: PEC audit protocol</div>
-        <table class="protocol-table">
-          <thead><tr><th>Phase</th><th>Layer / relation</th><th>Operation</th><th>Audit role</th></tr></thead>
-          <tbody>
-            <tr><td>1</td><td>P: Preference</td><td>Build stated-preference sets and weighted profile-state distributions.</td><td>Preference layer</td></tr>
-            <tr><td>1</td><td>E: Logged exposure</td><td>Build user-date recommendation sets, ranks, and exposure unions.</td><td>Exposure layer</td></tr>
-            <tr><td>1</td><td>S: Surfaces</td><td>Assign click-time entry pathways from interface metadata.</td><td>Surface-context layer</td></tr>
-            <tr><td>1</td><td>C: Consumption</td><td>Build clicked-item sets and click distributions linked to article metadata.</td><td>Consumption layer</td></tr>
-            <tr><td>2</td><td>P ↔ C</td><td>Compute top-category match, Jaccard overlap, cosine similarity, and JS divergence.</td><td>Preference–consumption alignment</td></tr>
-            <tr><td>2</td><td>E ↔ C</td><td>Trace clicks to same-day lists, exposure history, candidate-pool baselines, and popularity-aware baselines.</td><td>Exposure–consumption traceability</td></tr>
-            <tr><td>2</td><td>E ↔ C</td><td>Count-match exposure to clicks; compute entropy, HHI, top share, effective categories, and JS divergence.</td><td>Diversity shift</td></tr>
-            <tr><td>2</td><td>P, E, C</td><td>Fit bounded diagnostic models excluding direct alignment quantities.</td><td>Structured divergence</td></tr>
-            <tr><td>3</td><td>Output</td><td>Pair each empirical claim with its observability boundary.</td><td>Audit report</td></tr>
-          </tbody>
-        </table>
-        <p class="table-note"><em>Note.</em> Protocol 1 separates what is observed, what is compared, and what remains outside the observable scope of the logs.</p>
+      <div class="paper-table-stack">
+        <button class="paper-table-image" type="button" data-lightbox="assets/project/protocol-original.png" aria-label="Enlarge Protocol 1 from the submitted paper">
+          <img src="assets/project/protocol-original.png" alt="Protocol 1: PEC audit protocol, reproduced from the submitted paper">
+        </button>
+        <button class="paper-table-image" type="button" data-lightbox="assets/project/metrics-original.png" aria-label="Enlarge Table 2 from the submitted paper">
+          <img src="assets/project/metrics-original.png" alt="Table 2: PEC audit metrics and operational equations, reproduced from the submitted paper">
+        </button>
       </div>
       <p class="boundary-note"><strong>Boundary:</strong> PEC is a measurement protocol. It is not a ranking objective, a causal estimate, or a production targeting procedure.</p>
-
-      <div class="protocol-table-wrap metrics-table-wrap">
-        <div class="table-title">Table 2: Metrics used to operationalize the PEC audit</div>
-        <table class="protocol-table metrics-table">
-          <thead><tr><th>Audit quantity</th><th>Operational equation</th></tr></thead>
-          <tbody>
-            <tr><td>Category Jaccard</td><td>\(J_u=\dfrac{|P^{cat}_u\cap C^{top}_{cat}(u)|}{|P^{cat}_u\cup C^{top}_{cat}(u)|}\)</td></tr>
-            <tr><td>Divergence</td><td>\(D_u=1-J_u\)</td></tr>
-            <tr><td>Preference-click cosine</td><td>\(A_u=\cos(p^{cat}_{u,P},p^{cat}_{u,C})\)</td></tr>
-            <tr><td>Same-day hit</td><td>\(H_{ui}=\mathbf{1}\{i\in E(u,\operatorname{date}(i))\}\)</td></tr>
-            <tr><td>Top-\(k\) lift</td><td>\(\mathrm{Lift}_k=\dfrac{\mathbb{E}[H^k_{obs}]}{\mathbb{E}[H^k_{base}]}\)</td></tr>
-            <tr><td>Normalized entropy</td><td>\(H_{\mathrm{norm}}(X)=-\sum_xp_x\log(p_x)/\log|X^+|,\quad X^+=\{x:p_x&gt;0\}\)</td></tr>
-            <tr><td>HHI / top share</td><td>\(\mathrm{HHI}(X)=\sum_xp_x^2,\qquad \mathrm{TopShare}(X)=\max_xp_x\)</td></tr>
-            <tr><td>JS divergence</td><td>\(\mathrm{JS}_2(p,q)=\tfrac12\mathrm{KL}_2(p\parallel m)+\tfrac12\mathrm{KL}_2(q\parallel m),\quad m=\tfrac{p+q}{2}\)</td></tr>
-            <tr><td>Count-matched narrowing</td><td>\(\Delta H_{\mathrm{norm}}=H_{\mathrm{norm}}(E'_u)-H_{\mathrm{norm}}(C_u);\; \Delta\mathrm{HHI}=\mathrm{HHI}(C_u)-\mathrm{HHI}(E'_u);\; |E'_u|=|C_u|\)</td></tr>
-          </tbody>
-        </table>
-        <p class="table-note"><em>Note.</em> \(C^{top}_{cat}(u)\) is the user's top three clicked categories, or fewer when fewer are observed. \(E'_u\) is sampled from the user's logged-exposure union. PEC reports divergence, not its square-root distance.</p>
-      </div>
     </section>
 
     <section class="section" id="findings">
@@ -227,6 +183,6 @@
     <button class="lightbox-close" type="button" aria-label="Close figure">×</button>
     <img src="" alt="Expanded paper figure">
   </dialog>
-  <script src="project.js?v=3"></script>
+  <script src="project.js?v=4"></script>
 </body>
 </html>
