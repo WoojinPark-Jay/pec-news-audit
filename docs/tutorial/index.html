@@ -9,7 +9,7 @@
   <link rel="icon" href="../favicon.svg?v=1" type="image/svg+xml">
   <link rel="icon" href="../favicon-32.png?v=1" type="image/png" sizes="32x32">
   <script>try{document.documentElement.dataset.theme=localStorage.getItem('pec-theme')||'light'}catch(e){document.documentElement.dataset.theme='light'}</script>
-  <link rel="stylesheet" href="tutorial.css?v=6">
+  <link rel="stylesheet" href="tutorial.css?v=7">
 </head>
 <body>
   <header class="tutorial-header">
@@ -218,7 +218,9 @@
       <div class="claim-lab">
         <div class="claim-list" role="list">
           <button class="active" data-claim="logged" type="button">“The article was logged in a recommendation list.”</button>
+          <button data-claim="absent" type="button">“The article was not recommended because it is absent from the retained list.”</button>
           <button data-claim="profile" type="button">“The profile fully captures the user’s interests.”</button>
+          <button data-claim="success" type="button">“Profile–click agreement means personalization succeeded.”</button>
           <button data-claim="seen" type="button">“The user saw and attended to the article.”</button>
           <button data-claim="clicked" type="button">“The user clicked the article.”</button>
           <button data-claim="read" type="button">“The user read the article deeply.”</button>
@@ -226,10 +228,14 @@
           <button data-claim="diverse" type="button">“The system exposed the user to diverse content.”</button>
         </div>
         <div class="claim-result" id="claim-result" aria-live="polite">
-          <span class="status supported" id="claim-status">Supported</span>
+          <div class="claim-result-head"><span class="status supported" id="claim-status">Supported</span><div class="evidence-chips" id="evidence-chips"><b>E</b></div></div>
           <h3 id="claim-title">Directly observed in E</h3>
           <p id="claim-copy">The retained recommendation log can establish list membership and recorded rank for that list. It does not establish visual attention.</p>
-          <div class="evidence-chips" id="evidence-chips"><b>E</b></div>
+          <div class="claim-reasoning">
+            <div><span>Observed trace</span><p id="claim-evidence">Item identity, user-day list membership, and recorded rank in E.</p></div>
+            <div><span>Evidence still missing</span><p id="claim-boundary">A verified impression or any measure of visual attention.</p></div>
+          </div>
+          <p class="claim-rewrite"><b>Safer wording</b><span id="claim-rewrite">“The article appears in the retained recommendation list.”</span></p>
         </div>
       </div>
     </section>
@@ -257,6 +263,6 @@
   </main>
 
   <footer><span>PEC Gap interactive tutorial, 2026</span><a href="#top">Back to top ↑</a></footer>
-  <script src="tutorial.js?v=5"></script>
+  <script src="tutorial.js?v=6"></script>
 </body>
 </html>

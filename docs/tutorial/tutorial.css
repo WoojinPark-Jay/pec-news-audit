@@ -244,17 +244,29 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
 .dot-label { position: absolute; top: 0; color: var(--muted); font-size: .62rem; transform: translateX(-50%); white-space: nowrap; }
 .claim-lab { display: grid; grid-template-columns: .9fr 1.1fr; border: 1px solid var(--line); }
 .claim-list { display: grid; border-right: 1px solid var(--line); }
-.claim-list button { padding: 10px 13px; border: 0; border-bottom: 1px solid var(--line); background: var(--bg); color: var(--muted); text-align: left; cursor: pointer; }
+.claim-list button { display: grid; grid-template-columns: 1fr 18px; align-items: center; gap: 8px; padding: 9px 13px; border: 0; border-bottom: 1px solid var(--line); background: var(--bg); color: var(--muted); text-align: left; cursor: pointer; }
+.claim-list button::after { content: "→"; color: var(--line-strong); font-size: .82rem; text-align: right; transition: transform .18s ease, color .18s ease; }
 .claim-list button:last-child { border-bottom: 0; }
 .claim-list button:hover, .claim-list button.active { color: var(--ink); background: var(--surface); }
+.claim-list button:hover::after { color: var(--ink); transform: translateX(2px); }
 .claim-list button.active { box-shadow: inset 3px 0 var(--accent); }
-.claim-result { min-height: 180px; padding: 18px; background: var(--surface); }
+.claim-list button.active::after { content: "▶"; color: var(--ink); font-size: .6rem; transform: none; }
+.claim-result { min-height: 270px; padding: 16px 18px; background: var(--surface); }
+.claim-result-head { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
 .status { display: inline-block; padding: 3px 7px; border: 1px solid currentColor; color: var(--p); font-size: .62rem; font-weight: 750; letter-spacing: .08em; text-transform: uppercase; }
 .status.bounded { color: var(--s); } .status.unsupported { color: var(--c); }
-.claim-result h3 { margin: 18px 0 8px; font-family: Georgia, serif; font-size: 1.65rem; font-weight: 500; }
-.claim-result p { max-width: 600px; margin: 0; color: var(--muted); }
-.evidence-chips { display: flex; gap: 6px; margin-top: 26px; }
+.claim-result h3 { margin: 13px 0 7px; font-family: Georgia, serif; font-size: 1.55rem; font-weight: 500; }
+.claim-result > p { max-width: 650px; margin: 0; color: var(--muted); font-size: .79rem; }
+.evidence-chips { display: flex; gap: 5px; }
 .evidence-chips b { display: grid; place-items: center; width: 31px; height: 31px; border: 1px solid var(--line-strong); border-radius: 50%; font-family: Georgia, serif; font-weight: 400; }
+.claim-reasoning { display: grid; grid-template-columns: 1fr 1fr; margin-top: 14px; border-block: 1px solid var(--line); }
+.claim-reasoning > div { padding: 10px 12px 10px 0; }
+.claim-reasoning > div + div { padding-left: 12px; border-left: 1px solid var(--line); }
+.claim-reasoning span { display: block; margin-bottom: 5px; color: var(--ink); font-size: .62rem; font-weight: 750; letter-spacing: .07em; text-transform: uppercase; }
+.claim-reasoning p { margin: 0; color: var(--muted); font-size: .69rem; line-height: 1.42; }
+.claim-result .claim-rewrite { display: grid; grid-template-columns: 92px 1fr; gap: 10px; align-items: start; margin-top: 11px; color: var(--ink); }
+.claim-rewrite b { font-size: .67rem; text-transform: uppercase; letter-spacing: .05em; }
+.claim-rewrite span { color: var(--muted); font-size: .72rem; }
 .lessons-section { padding: 32px 0 14px; }
 .lessons-section > h2 { max-width: 780px; margin: 0 0 20px; font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.85rem, 3.4vw, 2.7rem); font-weight: 600; line-height: 1.08; letter-spacing: -.035em; }
 .lesson-grid { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--line); }
@@ -327,6 +339,8 @@ footer { display: flex; justify-content: space-between; padding: 20px 0 30px; bo
   .scenario-tabs { width: 100%; overflow-x: auto; }
   .claim-list { grid-template-columns: 1fr; }
   .claim-list button { grid-column: auto !important; border-right: 0; }
+  .claim-reasoning { grid-template-columns: 1fr; }
+  .claim-reasoning > div + div { padding-left: 0; border-top: 1px solid var(--line); border-left: 0; }
   .scenario-tabs button { white-space: nowrap; }
   .click-table, .trace-boundary, .trace-paper { grid-template-columns: 1fr; }
   .click-item:nth-child(odd) { border-right: 0; }
