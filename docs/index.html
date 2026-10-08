@@ -16,7 +16,7 @@
   <link rel="shortcut icon" href="favicon.ico?v=1">
   <link rel="apple-touch-icon" href="apple-touch-icon.png?v=1" sizes="180x180">
   <script>try{document.documentElement.dataset.theme=localStorage.getItem('pec-theme')||'light'}catch(e){document.documentElement.dataset.theme='light'}</script>
-  <link rel="stylesheet" href="project.css?v=18">
+  <link rel="stylesheet" href="project.css?v=19">
 </head>
 <body>
   <header class="site-header">
@@ -59,6 +59,23 @@
         <p>Personalized news platforms are often evaluated as if stated preferences, logged recommendation exposure, and click consumption form a single coherent pipeline. Collapsing these layers can distort audit conclusions: a platform may appear more aligned or diverse than observed click consumption supports, which can misdirect diversity governance or algorithmic intervention. We introduce a reusable Preference–Exposure–Consumption (PEC) audit framework that separates stated preference, observed weighted profile state, logged recommendation exposure, app-surface pathways, and click consumption under explicit observability boundaries. Using six months of logs from a deployed mobile news application, we audit 1,583 user profiles, 95,143 logged recommendation items, and 17,512 click events. Each trace type contributes distinct information; none directly substitutes for another. Preference–consumption alignment exceeds chance-based null baselines but captures only part of users' top-consumed category set. Logged recommendation lists contain clicked articles more often than a date-matched candidate-pool baseline predicts (11.29% vs. 9.13%; top-5 lift 1.47×), but many clicks arrive through other app surfaces. Raw exposure–consumption diversity gaps shrink under count matching, yet concentration mismatch persists in the audit-eligible cohort (HHI gap 0.082). Together, the results show that audit conclusions change depending on whether platforms measure stated preference, logged exposure, or click consumption.</p>
       </div>
     </section>
+
+    <a class="measurement-teaser" href="tutorial/?lang=en#pec-core-title" aria-label="Open the interactive PEC measurement map">
+      <div class="measurement-teaser-copy">
+        <span class="section-label">Measurement map</span>
+        <strong>The gap lives between traces.</strong>
+      </div>
+      <div class="measurement-teaser-layers" aria-hidden="true">
+        <span class="measurement-layer layer-p"><b>P</b><i>Preference</i></span>
+        <span class="measurement-gap">≠</span>
+        <span class="measurement-layer layer-e"><b>E</b><i>Exposure</i></span>
+        <span class="measurement-gap">≠</span>
+        <span class="measurement-layer layer-s"><b>S</b><i>Surface</i></span>
+        <span class="measurement-gap">≠</span>
+        <span class="measurement-layer layer-c"><b>C</b><i>Consumption</i></span>
+      </div>
+      <span class="measurement-teaser-link">Explore the interactive map <b>→</b></span>
+    </a>
 
     <section class="framework-wrap" aria-label="PEC audit framework">
       <h2>PEC Audit Framework</h2>
