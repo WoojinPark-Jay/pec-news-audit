@@ -16,7 +16,7 @@
   <link rel="shortcut icon" href="favicon.ico?v=1">
   <link rel="apple-touch-icon" href="apple-touch-icon.png?v=1" sizes="180x180">
   <script>try{document.documentElement.dataset.theme=localStorage.getItem('pec-theme')||'light'}catch(e){document.documentElement.dataset.theme='light'}</script>
-  <link rel="stylesheet" href="project.css?v=12">
+  <link rel="stylesheet" href="project.css?v=13">
 </head>
 <body>
   <header class="site-header">
@@ -43,7 +43,7 @@
       <p class="affiliation"><a href="https://www.korea.ac.kr/en/index.do"><img src="assets/project/korea-university-crest.png" alt="" aria-hidden="true">Korea University</a></p>
       <p class="venue">AAAI ICWSM 2027 · Full paper submission</p>
       <div class="actions" aria-label="Project links">
-        <span class="button button-muted" title="The arXiv link will be added after announcement">Preprint · soon</span>
+        <a class="button" href="https://arxiv.org/abs/2610.10173">arXiv:2610.10173</a>
         <a class="button" href="https://github.com/WoojinPark-Jay/pec-news-audit">Code &amp; artifacts</a>
         <a class="button button-quiet" href="https://woojinpark-jay.github.io/">Author page</a>
       </div>
@@ -153,10 +153,16 @@
           <p class="paper-meta">Woojin Park · AAAI ICWSM 2027 full paper submission</p>
         </div>
         <div class="paper-release">
-          <span>arXiv preprint</span>
-          <p>Submitted to arXiv. The public PDF viewer and permanent link will appear here when the record is announced.</p>
-          <span class="button button-muted">PDF · awaiting announcement</span>
+          <span>arXiv:2610.10173 [cs.SI]</span>
+          <p>Public preprint · submitted October 7, 2026 · 16 pages, 5 figures, and 14 tables.</p>
+          <div class="actions">
+            <a class="button" href="https://arxiv.org/abs/2610.10173">View on arXiv</a>
+            <a class="button button-quiet" href="https://arxiv.org/pdf/2610.10173">Open PDF</a>
+          </div>
         </div>
+      </div>
+      <div class="paper-viewer">
+        <iframe src="https://arxiv.org/pdf/2610.10173#view=FitH" title="PEC Gap arXiv preprint PDF" loading="lazy"></iframe>
       </div>
     </section>
 
@@ -184,13 +190,16 @@
       <h2>BibTeX</h2>
       <div class="code-wrap">
         <button id="copy-citation" type="button">Copy</button>
-        <pre><code id="bibtex">@article{park2026exposure,
+        <pre><code id="bibtex">@misc{park2026exposure,
   title   = {When Exposure Is Not Attention: Auditing the
              Preference--Exposure--Consumption Gap in
              Personalized News Recommenders},
   author  = {Park, Woojin},
   year    = {2026},
-  note    = {Preprint}
+  eprint  = {2610.10173},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.SI},
+  url     = {https://arxiv.org/abs/2610.10173}
 }</code></pre>
       </div>
     </section>

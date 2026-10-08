@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 title: "PEC Gap News Audit"
-message: "If you use this research artifact, please cite the accompanying manuscript and this repository. The manuscript is currently under review."
+message: "If you use this research artifact, please cite the arXiv preprint and this repository. The manuscript is currently under review."
 type: software
 authors:
   - family-names: "Park"
@@ -12,3 +12,16 @@ license: "MIT"
 version: "0.3.0"
 date-released: "2026-10-07"
 repository-code: "https://github.com/WoojinPark-Jay/pec-news-audit"
+url: "https://arxiv.org/abs/2610.10173"
+preferred-citation:
+  type: article
+  title: "When Exposure Is Not Attention: Auditing the Preference-Exposure-Consumption Gap in Personalized News Recommenders"
+  authors:
+    - family-names: "Park"
+      given-names: "Woojin"
+      orcid: "https://orcid.org/0009-0000-7183-5572"
+  year: 2026
+  identifiers:
+    - type: other
+      value: "arXiv:2610.10173"
+  url: "https://arxiv.org/abs/2610.10173"

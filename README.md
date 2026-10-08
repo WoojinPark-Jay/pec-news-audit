@@ -2,6 +2,8 @@
 
 ## [Open the project page →](https://woojinpark-jay.github.io/pec-news-audit/)
 
+**Paper:** [arXiv:2610.10173](https://arxiv.org/abs/2610.10173)
+
 The project page presents the paper's abstract, PEC audit framework, protocol,
 main findings, and public research artifacts in one concise visual overview.
 Use this repository for the release-safe code, aggregate tables, synthetic
