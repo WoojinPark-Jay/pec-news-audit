@@ -9,7 +9,7 @@
   <link rel="icon" href="../favicon.svg?v=1" type="image/svg+xml">
   <link rel="icon" href="../favicon-32.png?v=1" type="image/png" sizes="32x32">
   <script>try{document.documentElement.dataset.theme=localStorage.getItem('pec-theme')||'light'}catch(e){document.documentElement.dataset.theme='light'}</script>
-  <link rel="stylesheet" href="tutorial.css?v=2">
+  <link rel="stylesheet" href="tutorial.css?v=3">
 </head>
 <body>
   <header class="tutorial-header">
@@ -34,7 +34,7 @@
         <a class="button" href="#journey">Start the tutorial</a>
         <a class="button quiet" href="https://arxiv.org/abs/2610.10173">Read the paper</a>
       </div>
-      <p class="boundary-banner"><strong>Teaching boundary.</strong> Every person, article, and event below is synthetic. Paper results are labeled separately and cannot be reconstructed from these examples.</p>
+      <p class="boundary-banner"><strong>Core lesson.</strong> A platform trace supports only the claim its measurement can carry: logged exposure is not attention, and a click is not reading depth. Synthetic examples and paper results are labeled separately below.</p>
     </section>
 
     <nav class="progress-nav" aria-label="Tutorial steps">
@@ -86,6 +86,15 @@
           <div><span>Set overlap · Jaccard</span><strong id="pref-jaccard">0.750</strong><small>active categories shared by P and C</small></div>
           <div><span>Weighted similarity · cosine</span><strong id="pref-cosine">0.000</strong><small>directional similarity of the two vectors</small></div>
         </div>
+        <details class="formula-disclosure">
+          <summary>Show formulas and the current calculation</summary>
+          <div class="formula-grid">
+            <div><b>Top-category match</b><code>argmax(P) = argmax(C)</code><p id="pref-top-formula">Politics ≠ Technology → no match</p></div>
+            <div><b>Jaccard set overlap</b><code>J = |P⁺ ∩ C⁺| / |P⁺ ∪ C⁺|</code><p id="pref-jaccard-formula">3 shared / 4 active = 0.750</p></div>
+            <div><b>Cosine similarity</b><code>A = (P · C) / (‖P‖₂ ‖C‖₂)</code><p id="pref-cosine-formula">weighted vector similarity = 0.835</p></div>
+          </div>
+          <p class="formula-note">Jaccard ignores weight magnitude and compares only active category sets. Cosine uses the weights, but two equally shaped vectors can score highly even when their absolute volumes differ.</p>
+        </details>
       </div>
     </section>
 
@@ -136,8 +145,19 @@
         </div>
 
         <div class="distribution-panel">
-          <div class="distribution" id="exposure-bars"><span>Logged exposure</span></div>
-          <div class="distribution" id="click-bars"><span>Click consumption</span></div>
+          <div class="chart-heading"><span>Distribution profile</span><div><i class="legend-exposure"></i>Exposure <i class="legend-clicks"></i>Clicks</div></div>
+          <svg class="distribution-chart" id="distribution-chart" viewBox="0 0 500 180" role="img" aria-label="Exposure and click category distributions">
+            <g class="chart-grid"><line x1="34" y1="20" x2="486" y2="20"/><line x1="34" y1="58" x2="486" y2="58"/><line x1="34" y1="96" x2="486" y2="96"/><line x1="34" y1="134" x2="486" y2="134"/><text x="3" y="24">75%</text><text x="3" y="62">50%</text><text x="3" y="100">25%</text><text x="14" y="138">0</text><text class="category-label" x="55" y="162">Politics</text><text class="category-label" x="195" y="162">Technology</text><text class="category-label" x="335" y="162">Climate</text><text class="category-label" x="475" y="162">Culture</text></g>
+            <path id="exposure-area" class="distribution-area exposure-area" d=""/><path id="click-area" class="distribution-area click-area" d=""/>
+            <polyline id="exposure-line" class="distribution-line exposure-line" points=""/><polyline id="click-line" class="distribution-line click-line" points=""/>
+            <g id="exposure-points"></g><g id="click-points"></g>
+          </svg>
+          <div class="entropy-visual" aria-label="Entropy and effective category comparison">
+            <div class="entropy-scale"><span>Concentrated · 0</span><b>Entropy / evenness</b><span>1 · Even</span></div>
+            <div class="entropy-row"><b>Exposure</b><div class="entropy-track"><i id="exp-entropy-gauge"></i></div><strong id="exp-effective">0.000 · 0.00 effective categories</strong></div>
+            <div class="entropy-row"><b>Clicks</b><div class="entropy-track"><i id="click-entropy-gauge"></i></div><strong id="click-effective">0.000 · 0.00 effective categories</strong></div>
+          </div>
+          <p class="small">Each point is that category’s share of its own layer. Lines help compare the four labeled positions; the categories are not a continuous scale.</p>
         </div>
       </div>
 
@@ -148,6 +168,21 @@
         <div><span>JS divergence</span><strong id="js-divergence">0.000</strong></div>
       </div>
       <p class="metric-reading" id="metric-reading">The current click distribution is more concentrated than the logged exposure distribution.</p>
+      <div class="concept-strip" aria-label="Metric concept guide">
+        <span><b>Entropy</b>How evenly mass spreads</span>
+        <span><b>HHI</b>How strongly mass concentrates</span>
+        <span><b>JS divergence</b>How category composition differs</span>
+      </div>
+      <details class="formula-disclosure metric-formulas">
+        <summary>Show metric formulas and the current calculation</summary>
+        <div class="formula-grid four">
+          <div><b>Normalized entropy</b><code>Hₙ(X) = −Σ pₓ log(pₓ) / log|X⁺|</code><p id="entropy-formula">Exposure 0.995 · Clicks 0.805</p></div>
+          <div><b>HHI concentration</b><code>HHI(X) = Σ pₓ²</code><p id="hhi-formula">HHI(C) − HHI(E) = +0.144</p></div>
+          <div><b>JS divergence</b><code>JS(P,Q) = ½KL(P‖M) + ½KL(Q‖M)</code><p id="js-formula">M = (P + Q) / 2 → 0.069</p></div>
+          <div><b>Reading the direction</b><code>entropy ↓ · HHI ↑ = concentration ↑</code><p>JS measures compositional difference and has no “more diverse” direction by itself.</p></div>
+        </div>
+        <p class="formula-note"><strong>X⁺</strong> is the set of categories with nonzero mass. Probabilities are computed separately within exposure and clicks, so the comparison concerns their shapes rather than raw event totals.</p>
+      </details>
     </section>
 
     <section class="tutorial-section" id="evidence">
@@ -188,9 +223,21 @@
       </div>
     </section>
 
+    <section class="lessons-section" aria-labelledby="lessons-title">
+      <div class="section-kicker">Lessons from the PEC audit</div>
+      <h2 id="lessons-title">Separate the trace before interpreting the user.</h2>
+      <div class="lesson-grid">
+        <article><b>01</b><h3>Do not collapse P, E, S, and C.</h3><p>Stated preference, logged lists, interface pathways, and clicks are different measurements. Agreement between two layers does not make them interchangeable.</p></article>
+        <article><b>02</b><h3>Name the missing mechanism.</h3><p>A logged item does not establish visual attention. A click does not establish reading depth. A same-day match does not establish that the recommendation caused the click.</p></article>
+        <article><b>03</b><h3>Make the denominator part of the result.</h3><p>Count matching, click thresholds, retained-list coverage, and eligible-user rules can change the apparent gap. Report them beside every metric.</p></article>
+        <article><b>04</b><h3>Treat absence as bounded uncertainty.</h3><p>Not finding a click in one retained list means “not traceable here.” It does not prove that the platform never surfaced the article elsewhere.</p></article>
+      </div>
+      <p class="lesson-thesis"><strong>The paper’s message:</strong> responsible recommender evaluation begins by distinguishing what the system recorded, what the analyst inferred, and what the data cannot reveal.</p>
+    </section>
+
     <section class="closing-section">
-      <h2>The audit ends where the observable trace ends.</h2>
-      <p>Preference, logged exposure, interface pathways, and clicks each answer a different question. Responsible evaluation keeps those layers separate, reports the eligible denominator, and states what remains unobserved.</p>
+      <h2>Continue with the paper and public artifact.</h2>
+      <p>The tutorial provides the measurement logic; the paper documents the protocol, cohorts, uncertainty, and complete empirical results.</p>
       <div class="hero-actions">
         <a class="button" href="../">Return to the project page</a>
         <a class="button quiet" href="https://github.com/WoojinPark-Jay/pec-news-audit">Inspect the public artifact</a>
@@ -199,6 +246,6 @@
   </main>
 
   <footer><span>PEC Gap interactive tutorial · 2026</span><a href="#top">Back to top ↑</a></footer>
-  <script src="tutorial.js?v=2"></script>
+  <script src="tutorial.js?v=3"></script>
 </body>
 </html>

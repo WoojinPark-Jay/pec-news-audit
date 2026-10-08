@@ -60,6 +60,12 @@ function updatePreference() {
   document.querySelector('#pref-top-detail').textContent = `${preferenceCategories[pTop]} ${match ? '=' : '≠'} ${preferenceCategories[cTop]}`;
   document.querySelector('#pref-jaccard').textContent = (union ? intersection / union : 0).toFixed(3);
   document.querySelector('#pref-cosine').textContent = cosine(p, c).toFixed(3);
+  document.querySelector('#pref-top-formula').textContent = `${preferenceCategories[pTop]} ${match ? '=' : '≠'} ${preferenceCategories[cTop]} → ${match ? 'match' : 'no match'}`;
+  document.querySelector('#pref-jaccard-formula').textContent = `${intersection} shared / ${union} active = ${(union ? intersection / union : 0).toFixed(3)}`;
+  const dot = p.reduce((sum, value, index) => sum + value * c[index], 0);
+  const pNorm = Math.sqrt(p.reduce((sum, value) => sum + value * value, 0));
+  const cNorm = Math.sqrt(c.reduce((sum, value) => sum + value * value, 0));
+  document.querySelector('#pref-cosine-formula').textContent = `${dot.toFixed(0)} / (${pNorm.toFixed(2)} × ${cNorm.toFixed(2)}) = ${cosine(p, c).toFixed(3)}`;
 }
 preferenceInputs.forEach((input) => input.addEventListener('input', updatePreference));
 updatePreference();
@@ -74,7 +80,6 @@ function updateTraceability() {
 }
 traceChecks.forEach((box) => box.addEventListener('change', updateTraceability));
 
-const categoryColors = ['#31363a', '#557087', '#788b76', '#a48568'];
 const metricInputs = [...document.querySelectorAll('.slider-row input[type="range"]')];
 const defaults = metricInputs.map((input) => Number(input.value));
 
@@ -94,11 +99,18 @@ function jsDivergence(p, q) {
   const kl = (a, b) => a.reduce((sum, value, index) => value > 0 ? sum + value * Math.log2(value / b[index]) : sum, 0);
   return (kl(p, m) + kl(q, m)) / 2;
 }
-function drawBars(target, categories, probabilities) {
-  const label = target.querySelector(':scope > span').outerHTML;
-  target.innerHTML = label + categories.map((category, index) => `
-    <div class="bar-row"><b>${category}</b><div class="bar-track"><i style="width:${(probabilities[index] * 100).toFixed(1)}%;background:${categoryColors[index]}"></i></div><em>${(probabilities[index] * 100).toFixed(1)}%</em></div>
-  `).join('');
+function drawDistributionChart(exposure, clicks) {
+  const x = [55, 195, 335, 475];
+  const y = (value) => 134 - Math.min(.75, value) / .75 * 114;
+  const points = (values) => values.map((value, index) => `${x[index]},${y(value).toFixed(1)}`).join(' ');
+  const area = (values) => `M ${x[0]} 134 L ${values.map((value, index) => `${x[index]} ${y(value).toFixed(1)}`).join(' L ')} L ${x[x.length - 1]} 134 Z`;
+  document.querySelector('#exposure-line').setAttribute('points', points(exposure));
+  document.querySelector('#click-line').setAttribute('points', points(clicks));
+  document.querySelector('#exposure-area').setAttribute('d', area(exposure));
+  document.querySelector('#click-area').setAttribute('d', area(clicks));
+  const circles = (values, className) => values.map((value, index) => `<circle class="distribution-point ${className}" cx="${x[index]}" cy="${y(value).toFixed(1)}" r="5"><title>${preferenceCategories[index]}: ${(value * 100).toFixed(1)}%</title></circle>`).join('');
+  document.querySelector('#exposure-points').innerHTML = circles(exposure, 'exposure');
+  document.querySelector('#click-points').innerHTML = circles(clicks, 'clicks');
 }
 function updateMetrics() {
   metricInputs.forEach((input) => { input.nextElementSibling.value = input.value; });
@@ -106,13 +118,23 @@ function updateMetrics() {
   const exposure = categories.map((category) => Number(metricInputs.find((input) => input.dataset.layer === 'exposure' && input.dataset.category === category).value));
   const clicks = categories.map((category) => Number(metricInputs.find((input) => input.dataset.layer === 'clicks' && input.dataset.category === category).value));
   const p = distribution(exposure); const q = distribution(clicks);
-  drawBars(document.querySelector('#exposure-bars'), categories, p);
-  drawBars(document.querySelector('#click-bars'), categories, q);
+  drawDistributionChart(p, q);
   const expEntropy = entropy(p); const clickEntropy = entropy(q); const gap = hhi(q) - hhi(p); const js = jsDivergence(p, q);
   document.querySelector('#exp-entropy').textContent = expEntropy.toFixed(3);
   document.querySelector('#click-entropy').textContent = clickEntropy.toFixed(3);
+  const effective = (normalizedEntropy, probabilities) => {
+    const active = probabilities.filter((value) => value > 0).length;
+    return active > 1 ? Math.exp(normalizedEntropy * Math.log(active)) : active;
+  };
+  document.querySelector('#exp-entropy-gauge').style.width = `${expEntropy * 100}%`;
+  document.querySelector('#click-entropy-gauge').style.width = `${clickEntropy * 100}%`;
+  document.querySelector('#exp-effective').textContent = `${expEntropy.toFixed(3)} · ${effective(expEntropy, p).toFixed(2)} effective categories`;
+  document.querySelector('#click-effective').textContent = `${clickEntropy.toFixed(3)} · ${effective(clickEntropy, q).toFixed(2)} effective categories`;
   document.querySelector('#hhi-gap').textContent = `${gap >= 0 ? '+' : '−'}${Math.abs(gap).toFixed(3)}`;
   document.querySelector('#js-divergence').textContent = js.toFixed(3);
+  document.querySelector('#entropy-formula').textContent = `Exposure ${expEntropy.toFixed(3)} · Clicks ${clickEntropy.toFixed(3)} · Δ ${(clickEntropy-expEntropy >= 0 ? '+' : '−')}${Math.abs(clickEntropy-expEntropy).toFixed(3)}`;
+  document.querySelector('#hhi-formula').textContent = `${hhi(q).toFixed(3)} − ${hhi(p).toFixed(3)} = ${gap >= 0 ? '+' : '−'}${Math.abs(gap).toFixed(3)}`;
+  document.querySelector('#js-formula').textContent = `M = (Exposure + Clicks) / 2 → ${js.toFixed(3)}`;
   const reading = gap > .015 ? 'The current click distribution is more concentrated than the logged exposure distribution.' : gap < -.015 ? 'The current click distribution is less concentrated than the logged exposure distribution.' : 'The two layers currently have similar concentration, although their category composition may still differ.';
   document.querySelector('#metric-reading').textContent = reading;
 }
