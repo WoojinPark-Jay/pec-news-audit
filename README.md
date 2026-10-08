@@ -235,6 +235,23 @@ data or manuscript result tables.
 
 ## Citation
 
-Citation metadata for this research artifact is provided in
-[CITATION.cff](CITATION.cff). The manuscript is currently under review; do not
-describe it as accepted or published unless its status changes.
+Please cite the arXiv preprint when referring to the research findings:
+
+```bibtex
+@misc{park2026exposure,
+  title         = {When Exposure Is Not Attention: Auditing the
+                   Preference--Exposure--Consumption Gap in
+                   Personalized News Recommenders},
+  author        = {Park, Woojin},
+  year          = {2026},
+  eprint        = {2610.10173},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.SI},
+  url           = {https://arxiv.org/abs/2610.10173}
+}
+```
+
+GitHub also generates APA and BibTeX citations from [CITATION.cff](CITATION.cff)
+through the **Cite this repository** menu. The manuscript is currently under
+review; do not describe it as accepted or conference-published unless its
+status changes.
