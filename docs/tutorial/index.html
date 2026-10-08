@@ -9,7 +9,7 @@
   <link rel="icon" href="../favicon.svg?v=1" type="image/svg+xml">
   <link rel="icon" href="../favicon-32.png?v=1" type="image/png" sizes="32x32">
   <script>try{document.documentElement.dataset.theme=localStorage.getItem('pec-theme')||'light'}catch(e){document.documentElement.dataset.theme='light'}</script>
-  <link rel="stylesheet" href="tutorial.css?v=5">
+  <link rel="stylesheet" href="tutorial.css?v=6">
 </head>
 <body>
   <header class="tutorial-header">
@@ -85,8 +85,8 @@
           <div><span>Set overlap · Jaccard</span><strong id="pref-jaccard">0.750</strong><small>active categories shared by P and C</small></div>
           <div><span>Weighted similarity · cosine</span><strong id="pref-cosine">0.000</strong><small>directional similarity of the two vectors</small></div>
         </div>
-        <details class="formula-disclosure">
-          <summary>Show formulas and the current calculation</summary>
+        <details class="formula-disclosure" open>
+          <summary>Formulas and the current calculation</summary>
           <div class="formula-grid">
             <div><b>Top-category match</b><code>argmax(P) = argmax(C)</code><p id="pref-top-formula">Politics ≠ Technology → no match</p></div>
             <div><b>Jaccard set overlap</b><code>J = |P⁺ ∩ C⁺| / |P⁺ ∪ C⁺|</code><p id="pref-jaccard-formula">3 shared / 4 active = 0.750</p></div>
@@ -100,28 +100,40 @@
     <section class="tutorial-section" id="traceability">
       <div class="section-kicker">Traceability lab</div>
       <div class="section-heading">
-        <div><h2>How much click activity can the retained list trace?</h2><p>Toggle the synthetic click rows to see why a logged list is informative without representing the whole journey.</p></div>
-        <div class="paper-marker"><span>Paper result</span><strong>11.29%</strong><small>same-day observed hit</small></div>
+        <div><h2>What does an exposure–click match actually measure?</h2><p>Toggle the synthetic clicks, follow the denominator, and compare traceability with what the log still cannot establish.</p></div>
       </div>
 
       <div class="trace-lab">
-        <div class="click-table" id="click-table">
-          <div class="click-row header"><span>Click</span><span>Surface</span><span>In retained list?</span></div>
-          <label class="click-row"><span>Climate policy</span><span>Home / feed</span><input type="checkbox" checked></label>
-          <label class="click-row"><span>Local rail</span><span>Search</span><input type="checkbox"></label>
-          <label class="click-row"><span>Battery research</span><span>Category</span><input type="checkbox" checked></label>
-          <label class="click-row"><span>Election analysis</span><span>Headline</span><input type="checkbox"></label>
-          <label class="click-row"><span>Health guide</span><span>Notification</span><input type="checkbox"></label>
-          <label class="click-row"><span>Sports recap</span><span>Newsroom</span><input type="checkbox"></label>
-          <label class="click-row"><span>AI forecast</span><span>Article detail</span><input type="checkbox"></label>
-          <label class="click-row"><span>Housing policy</span><span>Home / feed</span><input type="checkbox"></label>
+        <div class="trace-input">
+          <div class="trace-input-head"><b>Synthetic click set</b><span>Found in the retained same-day list?</span></div>
+          <div class="click-table" id="click-table">
+            <label class="click-item"><input type="checkbox" checked><span><b>Climate policy</b><small>Home / feed</small></span></label>
+            <label class="click-item"><input type="checkbox"><span><b>Local rail</b><small>Search</small></span></label>
+            <label class="click-item"><input type="checkbox" checked><span><b>Battery research</b><small>Category</small></span></label>
+            <label class="click-item"><input type="checkbox"><span><b>Election analysis</b><small>Headline</small></span></label>
+            <label class="click-item"><input type="checkbox"><span><b>Health guide</b><small>Notification</small></span></label>
+            <label class="click-item"><input type="checkbox"><span><b>Sports recap</b><small>Newsroom</small></span></label>
+            <label class="click-item"><input type="checkbox"><span><b>AI forecast</b><small>Article detail</small></span></label>
+            <label class="click-item"><input type="checkbox"><span><b>Housing policy</b><small>Home / feed</small></span></label>
+          </div>
         </div>
         <div class="trace-output">
-          <span class="output-label">Synthetic traceability</span>
-          <strong id="trace-rate">25.00%</strong>
-          <p><b id="trace-count">2 of 8</b> clicks are present in the retained same-day list.</p>
-          <div class="meter"><i id="trace-meter"></i></div>
-          <p class="small">A miss means “not found in this retained list.” It does not prove the platform never displayed the article.</p>
+          <span class="output-label">Live calculation · synthetic</span>
+          <div class="trace-equation"><i>H</i><sub>trace</sub> = <span class="fraction"><b id="trace-numerator">2</b><b id="trace-denominator">8</b></span> = <strong id="trace-rate">25.0%</strong></div>
+          <div class="trace-composition" aria-label="Matched and unmatched synthetic clicks"><i id="trace-meter"></i></div>
+          <p id="trace-reading"><b id="trace-count">2 matched clicks</b> support same-day list–click co-occurrence. The other 6 are untraced by this retained list.</p>
+          <div class="trace-boundary">
+            <div><b>Supports</b><span>The article appears in retained E and later in C.</span></div>
+            <div><b>Does not establish</b><span>Visual attention, causal influence, or no exposure elsewhere.</span></div>
+          </div>
+        </div>
+        <div class="trace-paper">
+          <div class="trace-paper-copy"><span class="output-label">Paper evidence · comparable click events</span><p>The retained list carries signal above a date-matched candidate-pool baseline, while still tracing only a small share of the observed journey.</p></div>
+          <div class="trace-paper-metric"><span>Observed hit</span><strong>11.29%</strong><small><i></i>retained list</small></div>
+          <div class="trace-paper-metric"><span>Baseline</span><strong>9.13%</strong><small><i class="baseline"></i>date-matched pool</small></div>
+          <div class="trace-paper-metric"><span>Difference</span><strong>+2.16 <em>pp</em></strong><small>11.29 − 9.13</small></div>
+          <div class="trace-paper-metric"><span>Top-5 lift</span><strong>1.47×</strong><small><i>H</i><sub>logged@5</sub> / <i>H</i><sub>base@5</sub></small></div>
+          <p class="trace-paper-lesson"><b>Interpretation:</b> above-baseline overlap shows that the retained recommendations are informative. Low absolute coverage shows that they are not a complete record of attention or access.</p>
         </div>
       </div>
     </section>
@@ -172,8 +184,8 @@
         <span><b>HHI</b>How strongly mass concentrates</span>
         <span><b>JS divergence</b>How category composition differs</span>
       </div>
-      <details class="formula-disclosure metric-formulas">
-        <summary>Show metric formulas and the current calculation</summary>
+      <details class="formula-disclosure metric-formulas" open>
+        <summary>Metric formulas and the current calculation</summary>
         <div class="formula-grid four">
           <div><b>Normalized entropy</b><code>Hₙ(X) = −Σ pₓ log(pₓ) / log|X⁺|</code><p id="entropy-formula">Exposure 0.995 · Clicks 0.805</p></div>
           <div><b>HHI concentration</b><code>HHI(X) = Σ pₓ²</code><p id="hhi-formula">HHI(C) − HHI(E) = +0.144</p></div>
@@ -245,6 +257,6 @@
   </main>
 
   <footer><span>PEC Gap interactive tutorial, 2026</span><a href="#top">Back to top ↑</a></footer>
-  <script src="tutorial.js?v=4"></script>
+  <script src="tutorial.js?v=5"></script>
 </body>
 </html>

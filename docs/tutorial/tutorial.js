@@ -74,11 +74,16 @@ const traceChecks = [...document.querySelectorAll('#click-table input[type="chec
 function updateTraceability() {
   const matched = traceChecks.filter((box) => box.checked).length;
   const rate = matched / traceChecks.length * 100;
-  document.querySelector('#trace-rate').textContent = `${rate.toFixed(2)}%`;
-  document.querySelector('#trace-count').textContent = `${matched} of ${traceChecks.length}`;
+  const unmatched = traceChecks.length - matched;
+  document.querySelector('#trace-rate').textContent = `${rate.toFixed(1)}%`;
+  document.querySelector('#trace-numerator').textContent = matched;
+  document.querySelector('#trace-denominator').textContent = traceChecks.length;
+  document.querySelector('#trace-count').textContent = `${matched} matched click${matched === 1 ? '' : 's'}`;
+  document.querySelector('#trace-reading').lastChild.textContent = ` support same-day list–click co-occurrence. The other ${unmatched} ${unmatched === 1 ? 'is' : 'are'} untraced by this retained list.`;
   document.querySelector('#trace-meter').style.width = `${rate}%`;
 }
 traceChecks.forEach((box) => box.addEventListener('change', updateTraceability));
+updateTraceability();
 
 const metricInputs = [...document.querySelectorAll('.slider-row input[type="range"]')];
 const defaults = metricInputs.map((input) => Number(input.value));

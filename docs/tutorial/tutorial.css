@@ -119,20 +119,47 @@ main, footer { width: min(calc(100% - 48px), var(--max)); margin-inline: auto; }
 .formula-grid code { display: block; color: var(--ink); font-family: Georgia, "Times New Roman", serif; font-size: .88rem; line-height: 1.35; overflow-wrap: anywhere; white-space: normal; }
 .formula-grid p { margin: 8px 0 0; color: var(--muted); font-size: .69rem; }
 .formula-note { margin: 0; padding: 10px 16px; border-top: 1px solid var(--line); color: var(--muted); font-size: .68rem; }
-.paper-marker { min-width: 145px; padding: 12px 14px; border-block: 1px solid var(--line-strong); text-align: right; }
-.paper-marker span, .paper-marker small { display: block; color: var(--muted); font-size: .63rem; text-transform: uppercase; }
-.paper-marker strong { display: block; margin: 2px 0; font-family: Georgia, serif; font-size: 1.65rem; font-weight: 400; }
-.trace-lab { display: grid; grid-template-columns: 1.35fr .65fr; border: 1px solid var(--line); }
-.click-table { padding: 4px 18px 10px; }
-.click-row { display: grid; grid-template-columns: 1.2fr 1fr 120px; align-items: center; min-height: 37px; border-bottom: 1px solid var(--line); font-size: .79rem; }
-.click-row.header { min-height: 38px; color: var(--muted); font-size: .62rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
-.click-row input { justify-self: center; width: 16px; height: 16px; accent-color: var(--accent); }
-.trace-output { padding: 22px; border-left: 1px solid var(--line); background: var(--surface); }
-.trace-output > strong { display: block; margin-top: 9px; font-family: Georgia, serif; font-size: 2.35rem; font-weight: 500; line-height: 1; }
-.trace-output p { margin: 12px 0; color: var(--muted); }
+.trace-lab { display: grid; grid-template-columns: 1.06fr .94fr; border: 1px solid var(--line); }
+.trace-input { padding: 14px 16px 16px; }
+.trace-input-head { display: flex; justify-content: space-between; gap: 16px; padding-bottom: 9px; border-bottom: 1px solid var(--line); font-size: .66rem; }
+.trace-input-head b { letter-spacing: .08em; text-transform: uppercase; }
+.trace-input-head span { color: var(--muted); }
+.click-table { display: grid; grid-template-columns: 1fr 1fr; }
+.click-item { display: grid; grid-template-columns: 20px 1fr; gap: 8px; align-items: center; min-height: 49px; padding: 6px 8px 6px 0; border-bottom: 1px solid var(--line); cursor: pointer; }
+.click-item:nth-child(odd) { border-right: 1px solid var(--line); }
+.click-item:nth-child(even) { padding-left: 12px; }
+.click-item input { width: 15px; height: 15px; margin: 0; accent-color: var(--accent); }
+.click-item b, .click-item small { display: block; }
+.click-item b { font-size: .75rem; font-weight: 650; }
+.click-item small { margin-top: 2px; color: var(--muted); font-size: .64rem; }
+.trace-output { padding: 16px 18px; border-left: 1px solid var(--line); background: var(--surface); }
+.trace-equation { display: flex; align-items: center; gap: 5px; margin: 10px 0 9px; font-family: Georgia, "Times New Roman", serif; font-size: 1.05rem; }
+.trace-equation > strong { margin-left: 3px; font-size: 1.85rem; font-weight: 500; }
+.fraction { display: inline-grid; grid-template-rows: 1fr 1fr; min-width: 28px; text-align: center; line-height: 1.05; }
+.fraction b { font-weight: 500; }
+.fraction b:first-child { padding-bottom: 2px; border-bottom: 1px solid currentColor; }
+.fraction b:last-child { padding-top: 2px; }
+.trace-composition { height: 7px; overflow: hidden; background: var(--line); }
+.trace-composition i { display: block; width: 25%; height: 100%; background: var(--accent); transition: width .2s ease; }
+.trace-output > p { margin: 10px 0; color: var(--muted); font-size: .75rem; }
 .trace-output p b { color: var(--ink); }
-.meter { height: 5px; margin: 20px 0; overflow: hidden; background: var(--line); }
-.meter i { display: block; width: 25%; height: 100%; background: var(--accent); transition: width .25s ease; }
+.trace-boundary { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line); }
+.trace-boundary > div { padding: 9px 10px 0 0; }
+.trace-boundary > div + div { padding-left: 10px; border-left: 1px solid var(--line); }
+.trace-boundary b, .trace-boundary span { display: block; }
+.trace-boundary b { margin-bottom: 4px; font-size: .65rem; text-transform: uppercase; letter-spacing: .06em; }
+.trace-boundary span { color: var(--muted); font-size: .66rem; line-height: 1.4; }
+.trace-paper { grid-column: 1 / -1; display: grid; grid-template-columns: 1.7fr repeat(4,.72fr); border-top: 1px solid var(--line); }
+.trace-paper-copy, .trace-paper-metric { padding: 12px 14px; border-right: 1px solid var(--line); }
+.trace-paper-copy p { margin: 6px 0 0; color: var(--muted); font-size: .7rem; line-height: 1.45; }
+.trace-paper-metric span, .trace-paper-metric small { display: block; color: var(--muted); font-size: .61rem; }
+.trace-paper-metric span { text-transform: uppercase; letter-spacing: .06em; }
+.trace-paper-metric strong { display: block; margin: 3px 0 1px; font-family: Georgia, serif; font-size: 1.35rem; font-weight: 500; white-space: nowrap; }
+.trace-paper-metric strong em { font-family: inherit; font-size: .64rem; font-style: normal; }
+.trace-paper-metric small i { display: inline-block; width: 10px; height: 3px; margin-right: 4px; background: var(--ink); vertical-align: middle; }
+.trace-paper-metric small i.baseline { background: var(--line-strong); }
+.trace-paper-lesson { grid-column: 1 / -1; margin: 0; padding: 9px 14px; border-top: 1px solid var(--line); color: var(--muted); font-size: .7rem; }
+.trace-paper-lesson b { color: var(--ink); }
 .small { color: var(--muted); font-size: .72rem !important; font-weight: 500; }
 .reset-button { border: 1px solid var(--line-strong); }
 .reset-button:hover { color: var(--ink); background: var(--surface); }
@@ -249,6 +276,9 @@ footer { display: flex; justify-content: space-between; padding: 20px 0 30px; bo
   .section-heading, .trace-lab, .metric-lab, .claim-lab, .preference-lab { grid-template-columns: 1fr; }
   .journey-grid { grid-template-columns: 1fr 1fr; } .journey-grid::before { display: none; }
   .trace-output, .claim-list { border: 0; border-top: 1px solid var(--line); }
+  .trace-paper { grid-template-columns: repeat(2,1fr); }
+  .trace-paper-copy { grid-column: 1 / -1; border-right: 0; border-bottom: 1px solid var(--line); }
+  .trace-paper-metric:nth-of-type(odd) { border-right: 0; }
   .claim-list { grid-template-columns: 1fr 1fr; }
   .claim-list button { border-right: 1px solid var(--line); }
   .claim-list button:nth-child(2n) { border-right: 0; }
@@ -266,7 +296,7 @@ footer { display: flex; justify-content: space-between; padding: 20px 0 30px; bo
   .journey-grid { grid-template-columns: repeat(4,1fr); }
   .preference-lab { grid-template-columns: .85fr 1.15fr; }
   .preference-intro { border-right: 1px solid var(--line); border-bottom: 0; }
-  .trace-lab { grid-template-columns: 1.35fr .65fr; }
+  .trace-lab { grid-template-columns: 1.06fr .94fr; }
   .trace-output { border-top: 0; border-left: 1px solid var(--line); }
   .metric-lab { grid-template-columns: 1.05fr .95fr; }
   .claim-lab { grid-template-columns: .9fr 1.1fr; }
@@ -298,7 +328,11 @@ footer { display: flex; justify-content: space-between; padding: 20px 0 30px; bo
   .claim-list { grid-template-columns: 1fr; }
   .claim-list button { grid-column: auto !important; border-right: 0; }
   .scenario-tabs button { white-space: nowrap; }
-  .click-row { grid-template-columns: 1.2fr .8fr 72px; }
+  .click-table, .trace-boundary, .trace-paper { grid-template-columns: 1fr; }
+  .click-item:nth-child(odd) { border-right: 0; }
+  .click-item:nth-child(even) { padding-left: 0; }
+  .trace-paper-copy, .trace-paper-metric { grid-column: auto; border-right: 0; border-bottom: 1px solid var(--line); }
+  .trace-paper-lesson { grid-column: auto; }
   .slider-head, .slider-row { grid-template-columns: 78px 1fr 26px 1fr 26px; gap: 5px; }
   .metric-output { grid-template-columns: 1fr; }
   .formula-grid, .formula-grid.four { grid-template-columns: 1fr; }
@@ -308,4 +342,4 @@ footer { display: flex; justify-content: space-between; padding: 20px 0 30px; bo
   .metric-output > div:last-child { border-bottom: 0; }
   .closing-section { padding: 28px 20px; }
 }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .meter i, .bar-track i { transition: none; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .trace-composition i, .bar-track i { transition: none; } }
