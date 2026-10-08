@@ -43,6 +43,7 @@ main, footer { width: min(calc(100% - 48px), var(--max)); margin-inline: auto; }
   font-size: clamp(2.25rem, 4.5vw, 3.7rem); font-weight: 600; line-height: 1.02; letter-spacing: -.04em;
 }
 .dek { max-width: 720px; margin: 16px auto 0; color: var(--muted); font-size: 1rem; line-height: 1.5; }
+.hero-author { color: var(--ink); font-weight: 650; text-decoration-thickness: 1px; }
 .hero-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-top: 17px; }
 .button {
   display: inline-flex; align-items: center; justify-content: center; min-height: 36px; padding: 0 14px;
@@ -51,11 +52,6 @@ main, footer { width: min(calc(100% - 48px), var(--max)); margin-inline: auto; }
 }
 .button:hover { background: var(--surface); }
 .button.quiet { border-color: var(--line-strong); font-weight: 600; }
-.boundary-banner {
-  max-width: 760px; margin: 18px auto 0; padding: 10px 13px; border-left: 3px solid var(--accent);
-  background: var(--surface); color: var(--muted); font-size: .78rem; text-align: left;
-}
-.boundary-banner strong { color: var(--ink); }
 .pec-core { margin: 4px 0 28px; padding: 18px; border: 1px solid var(--line); }
 .pec-core-heading { display: grid; grid-template-columns: 1fr minmax(260px, 430px); gap: 28px; align-items: end; margin-bottom: 18px; }
 .pec-core-heading .section-kicker { display: block; margin-bottom: 7px; }
