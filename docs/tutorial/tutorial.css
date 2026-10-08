@@ -43,8 +43,10 @@ main, footer { width: min(calc(100% - 48px), var(--max)); margin-inline: auto; }
   font-size: clamp(2.25rem, 4.5vw, 3.7rem); font-weight: 600; line-height: 1.02; letter-spacing: -.04em;
 }
 .dek { max-width: 720px; margin: 16px auto 0; color: var(--muted); font-size: 1rem; line-height: 1.5; }
+.paper-title { display: block; margin-top: 5px; color: var(--ink); font-family: Georgia, "Times New Roman", serif; font-size: 1.05em; font-style: normal; font-weight: 700; line-height: 1.4; }
+.paper-byline { display: block; margin-top: 3px; }
 .hero-author { color: var(--ink); font-weight: 650; text-decoration-thickness: 1px; }
-.dek-follow { display: block; margin-top: 2px; }
+.dek-follow { display: block; margin-top: 8px; }
 .hero-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-top: 17px; }
 .button {
   display: inline-flex; align-items: center; justify-content: center; min-height: 36px; padding: 0 14px;
