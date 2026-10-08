@@ -9,7 +9,7 @@
   <link rel="icon" href="../favicon.svg?v=1" type="image/svg+xml">
   <link rel="icon" href="../favicon-32.png?v=1" type="image/png" sizes="32x32">
   <script>try{document.documentElement.dataset.theme=localStorage.getItem('pec-theme')||'light'}catch(e){document.documentElement.dataset.theme='light'}</script>
-  <link rel="stylesheet" href="tutorial.css?v=1">
+  <link rel="stylesheet" href="tutorial.css?v=2">
 </head>
 <body>
   <header class="tutorial-header">
@@ -18,6 +18,7 @@
       <a href="#journey">Journey</a>
       <a href="#traceability">Traceability</a>
       <a href="#metrics">Metrics</a>
+      <a href="#evidence">Evidence</a>
       <a href="#claims">Claims</a>
       <a href="../">Project page</a>
       <button id="theme-toggle" type="button" aria-label="Switch color theme">◐</button>
@@ -40,7 +41,8 @@
       <a href="#journey"><b>01</b><span>Trace the journey</span></a>
       <a href="#traceability"><b>02</b><span>Test traceability</span></a>
       <a href="#metrics"><b>03</b><span>Calculate diversity</span></a>
-      <a href="#claims"><b>04</b><span>Check the claim</span></a>
+      <a href="#evidence"><b>04</b><span>Read paper results</span></a>
+      <a href="#claims"><b>05</b><span>Check the claim</span></a>
     </nav>
 
     <section class="tutorial-section" id="journey">
@@ -63,6 +65,27 @@
       <div class="interpretation-grid">
         <div><span>Supported observation</span><p id="supported-observation">This article is present in the retained list and later appears as a click event.</p></div>
         <div><span>Still outside the data</span><p id="unsupported-inference">The logs do not establish that the user visually attended to the list entry or read the article deeply.</p></div>
+      </div>
+
+      <div class="preference-lab">
+        <div class="preference-intro">
+          <span class="mini-kicker">Preference simulator · synthetic</span>
+          <h3>Does the profile represent what the user later clicks?</h3>
+          <p>Move the stored profile weights and click counts. A top-category match asks only whether the largest category agrees. Jaccard asks how much the active category sets overlap. Cosine also considers their relative weights.</p>
+          <p class="small"><strong>P is stated preference:</strong> categories explicitly stored in the user profile. <strong>C is observed click consumption:</strong> categories attached to clicked articles. Neither is a complete measure of interest.</p>
+        </div>
+        <div class="preference-controls" id="preference-controls">
+          <div class="preference-head"><span>Category</span><span>P · profile</span><span>C · clicks</span></div>
+          <div class="preference-row"><b>Politics</b><input data-pref="p" aria-label="Politics profile weight" type="range" min="0" max="10" value="8"><output>8</output><input data-pref="c" aria-label="Politics click count" type="range" min="0" max="10" value="5"><output>5</output></div>
+          <div class="preference-row"><b>Technology</b><input data-pref="p" aria-label="Technology profile weight" type="range" min="0" max="10" value="5"><output>5</output><input data-pref="c" aria-label="Technology click count" type="range" min="0" max="10" value="7"><output>7</output></div>
+          <div class="preference-row"><b>Climate</b><input data-pref="p" aria-label="Climate profile weight" type="range" min="0" max="10" value="4"><output>4</output><input data-pref="c" aria-label="Climate click count" type="range" min="0" max="10" value="2"><output>2</output></div>
+          <div class="preference-row"><b>Culture</b><input data-pref="p" aria-label="Culture profile weight" type="range" min="0" max="10" value="0"><output>0</output><input data-pref="c" aria-label="Culture click count" type="range" min="0" max="10" value="4"><output>4</output></div>
+        </div>
+        <div class="preference-output" aria-live="polite">
+          <div><span>Top-category match</span><strong id="pref-top-match">No</strong><small id="pref-top-detail">Politics ≠ Technology</small></div>
+          <div><span>Set overlap · Jaccard</span><strong id="pref-jaccard">0.750</strong><small>active categories shared by P and C</small></div>
+          <div><span>Weighted similarity · cosine</span><strong id="pref-cosine">0.000</strong><small>directional similarity of the two vectors</small></div>
+        </div>
       </div>
     </section>
 
@@ -127,14 +150,29 @@
       <p class="metric-reading" id="metric-reading">The current click distribution is more concentrated than the logged exposure distribution.</p>
     </section>
 
+    <section class="tutorial-section" id="evidence">
+      <div class="section-kicker">04 · Paper evidence explorer</div>
+      <div class="section-heading">
+        <div><h2>Read the result together with its denominator and boundary.</h2><p>These panels use aggregate values reported in the paper. Switch questions and conditions to see what changes—and what the result does not establish.</p></div>
+      </div>
+      <div class="evidence-tabs" role="tablist" aria-label="Paper research questions">
+        <button class="active" data-evidence="rq1" type="button"><b>RQ1</b> Preference alignment</button>
+        <button data-evidence="rq2" type="button"><b>RQ2</b> Traceability</button>
+        <button data-evidence="rq3" type="button"><b>RQ3</b> Diversity</button>
+        <button data-evidence="rq4" type="button"><b>RQ4</b> Diagnostic model</button>
+      </div>
+      <div class="evidence-panel" id="evidence-panel" aria-live="polite"></div>
+    </section>
+
     <section class="tutorial-section" id="claims">
-      <div class="section-kicker">04 · Claim checker</div>
+      <div class="section-kicker">05 · Claim checker</div>
       <div class="section-heading">
         <div><h2>Name the evidence before making the claim.</h2><p>Select a statement to see the strongest interpretation supported by the available trace.</p></div>
       </div>
       <div class="claim-lab">
         <div class="claim-list" role="list">
           <button class="active" data-claim="logged" type="button">“The article was logged in a recommendation list.”</button>
+          <button data-claim="profile" type="button">“The profile fully captures the user’s interests.”</button>
           <button data-claim="seen" type="button">“The user saw and attended to the article.”</button>
           <button data-claim="clicked" type="button">“The user clicked the article.”</button>
           <button data-claim="read" type="button">“The user read the article deeply.”</button>
@@ -161,6 +199,6 @@
   </main>
 
   <footer><span>PEC Gap interactive tutorial · 2026</span><a href="#top">Back to top ↑</a></footer>
-  <script src="tutorial.js?v=1"></script>
+  <script src="tutorial.js?v=2"></script>
 </body>
 </html>
