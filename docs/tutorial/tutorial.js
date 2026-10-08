@@ -28,33 +28,64 @@ const scenarios = {
 const coreLenses = {
   alignment: {
     relation: 'P ↔ C',
+    layers: ['p','c'],
     title: 'Does the stored profile align with later clicking?',
     copy: 'Compare dominant categories, active sets, and weighted distributions. Each statistic answers a different version of “alignment.”',
-    methods: ['argmax match', 'Jaccard J', 'cosine A', 'chance-based nulls'],
+    methods: [
+      ['argmax match', '1[argmax(P) = argmax(C)] · coarse dominant-category recovery.'],
+      ['Jaccard J', 'J = |P⁺ ∩ C⁺| / |P⁺ ∪ C⁺| · active-set overlap; profile weights are ignored.'],
+      ['cosine A', 'A = (P · C) / (‖P‖₂‖C‖₂) · directional similarity between weighted vectors.'],
+      ['chance-based nulls', 'Compare observed alignment with size-matched random profiles to avoid treating base rates as personalization.']
+    ],
     boundary: 'Agreement between P and C does not establish satisfaction, total interest, or causal personalization success.'
   },
   traceability: {
     relation: 'E ↔ C',
+    layers: ['e','c'],
     title: 'How much clicked activity can the retained list trace?',
     copy: 'Condition on comparable user-days, search for the clicked item in E, and compare the observed hit against plausible non-personalized expectations.',
-    methods: ['same-day hit', 'candidate baseline', 'Lift@k', 'clustered bootstrap CI'],
+    methods: [
+      ['same-day hit', 'H = Σᵢ 1[i ∈ E(u, date(i))] / N · the share of comparable clicks found in the retained list.'],
+      ['candidate baseline', 'Date-match each click to the available candidate pool before estimating expected overlap.'],
+      ['Lift@k', 'Lift@k = H_logged@k / H_base@k · relative gain above a non-personalized expectation.'],
+      ['clustered bootstrap CI', 'Resample users, rather than individual clicks, to preserve within-user dependence.']
+    ],
     boundary: 'A hit supports list–click co-occurrence, not visual attention or causation. A miss does not establish that no exposure occurred elsewhere.'
   },
   diversity: {
     relation: 'E ↔ C',
+    layers: ['e','c'],
     title: 'Do the two layers differ in breadth, concentration, or composition?',
     copy: 'Normalize each distribution separately, control the event-count imbalance, and report multiple metrics because no single score captures every kind of gap.',
-    methods: ['normalized entropy', 'HHI', 'top share', 'JS divergence', 'count matching'],
+    methods: [
+      ['normalized entropy', 'Hₙ(X) = −Σ pₓ log(pₓ) / log|X⁺| · evenness over the active support.'],
+      ['HHI', 'HHI(X) = Σ pₓ² · concentration rises as mass collapses onto fewer categories.'],
+      ['top share', 'TopShare(X) = maxₓ pₓ · the dominant category’s probability mass.'],
+      ['JS divergence', 'JS(P,Q) compares category composition and stays finite on unequal supports.'],
+      ['count matching', 'Sample |E′ᵤ| = |Cᵤ| before comparison so list volume does not mechanically inflate diversity.']
+    ],
     boundary: 'Logged-list diversity describes retained E. It does not automatically describe what the user noticed, consumed, or read deeply.'
   },
   surface: {
     relation: 'S → C',
+    layers: ['s','c'],
     title: 'Which interface pathway produced the recorded click entry?',
     copy: 'Use surface metadata to distinguish home/feed, search, category, headline, newsroom, and article-detail pathways before interpreting list coverage.',
-    methods: ['surface shares', 'pathway stratification', 'cohort sensitivity', 'traceable vs. other routes'],
+    methods: [
+      ['surface shares', 'Share(s) = N_click,s / N_click · composition of recorded click-entry pathways.'],
+      ['pathway stratification', 'Recompute audit quantities within each surface instead of pooling distinct entry mechanisms.'],
+      ['cohort sensitivity', 'Repeat the comparison under explicit activity and observability thresholds.'],
+      ['traceable vs. other routes', 'Separate clicks found in retained E from clicks entering through other recorded pathways.']
+    ],
     boundary: 'S records the click entry context available in the log. It does not reconstruct every screen view or preceding recommendation event.'
   }
 };
+function renderCoreMethod(lens, index) {
+  const method = lens.methods[index];
+  document.querySelectorAll('[data-core-method]').forEach((button) => button.classList.toggle('active', Number(button.dataset.coreMethod) === index));
+  document.querySelector('#core-method-name').textContent = method[0];
+  document.querySelector('#core-method-detail').textContent = method[1];
+}
 function renderCoreLens(key) {
   const lens = coreLenses[key];
   document.querySelectorAll('[data-core-lens]').forEach((button) => {
@@ -65,12 +96,18 @@ function renderCoreLens(key) {
   document.querySelector('#core-lens-relation').textContent = lens.relation;
   document.querySelector('#core-lens-title').textContent = lens.title;
   document.querySelector('#core-lens-copy').textContent = lens.copy;
-  document.querySelector('#core-lens-methods').innerHTML = lens.methods.map((method) => `<code>${method}</code>`).join('');
+  document.querySelectorAll('[data-core-layer]').forEach((layer) => layer.classList.toggle('is-related', lens.layers.includes(layer.dataset.coreLayer)));
+  document.querySelector('#core-lens-methods').innerHTML = lens.methods.map((method, index) => `<button class="${index === 0 ? 'active' : ''}" data-core-method="${index}" type="button">${method[0]}</button>`).join('');
+  document.querySelectorAll('[data-core-method]').forEach((button) => {
+    ['mouseenter', 'focus', 'click'].forEach((eventName) => button.addEventListener(eventName, () => renderCoreMethod(lens, Number(button.dataset.coreMethod))));
+  });
+  renderCoreMethod(lens, 0);
   document.querySelector('#core-lens-boundary').textContent = lens.boundary;
 }
 document.querySelectorAll('[data-core-lens]').forEach((button) => {
   ['mouseenter', 'focus', 'click'].forEach((eventName) => button.addEventListener(eventName, () => renderCoreLens(button.dataset.coreLens)));
 });
+renderCoreLens('alignment');
 
 document.querySelectorAll('[data-scenario]').forEach((button) => {
   button.addEventListener('click', () => {

@@ -9,7 +9,7 @@
   <link rel="icon" href="../favicon.svg?v=1" type="image/svg+xml">
   <link rel="icon" href="../favicon-32.png?v=1" type="image/png" sizes="32x32">
   <script>try{document.documentElement.dataset.theme=localStorage.getItem('pec-theme')||'light'}catch(e){document.documentElement.dataset.theme='light'}</script>
-  <link rel="stylesheet" href="tutorial.css?v=8">
+  <link rel="stylesheet" href="tutorial.css?v=9">
 </head>
 <body>
   <header class="tutorial-header">
@@ -43,25 +43,25 @@
       </div>
 
       <div class="trace-system" aria-label="Preference, exposure, surface, and consumption data layers">
-        <article class="trace-stack core-p">
+        <article class="trace-stack core-p" data-core-layer="p">
           <div class="stack-title"><b>P</b><span>Preference</span></div>
           <div class="stack-chips"><span>stated category</span><span>profile weight</span><span>stored state</span></div>
           <p>What the user explicitly stored</p>
         </article>
         <div class="system-gap" aria-hidden="true"><i></i><b>≠</b></div>
-        <article class="trace-stack core-e">
+        <article class="trace-stack core-e" data-core-layer="e">
           <div class="stack-title"><b>E</b><span>Logged exposure</span></div>
           <div class="stack-chips"><span>article ID</span><span>rank</span><span>user-day list</span></div>
           <p>What the system retained</p>
         </article>
         <div class="system-gap" aria-hidden="true"><i></i><b>≠</b></div>
-        <article class="trace-stack core-s">
+        <article class="trace-stack core-s" data-core-layer="s">
           <div class="stack-title"><b>S</b><span>Surface</span></div>
           <div class="stack-chips"><span>home / feed</span><span>search</span><span>category</span></div>
           <p>Where the click journey entered</p>
         </article>
         <div class="system-gap" aria-hidden="true"><i></i><b>≠</b></div>
-        <article class="trace-stack core-c">
+        <article class="trace-stack core-c" data-core-layer="c">
           <div class="stack-title"><b>C</b><span>Consumption</span></div>
           <div class="stack-chips"><span>click</span><span>timestamp</span><span>article category</span></div>
           <p>What the click log observed</p>
@@ -77,7 +77,10 @@
 
       <div class="core-lens" id="core-lens" aria-live="polite">
         <div class="core-lens-question"><span id="core-lens-relation">P ↔ C</span><div><h3 id="core-lens-title">Does the stored profile align with later clicking?</h3><p id="core-lens-copy">Compare dominant categories, active sets, and weighted distributions. Each statistic answers a different version of “alignment.”</p></div></div>
-        <div class="core-lens-methods" id="core-lens-methods"><code>argmax match</code><code>Jaccard J</code><code>cosine A</code><code>chance-based nulls</code></div>
+        <div class="core-lens-toolbox">
+          <div class="core-lens-methods" id="core-lens-methods"><button class="active" type="button">argmax match</button><button type="button">Jaccard J</button><button type="button">cosine A</button><button type="button">chance-based nulls</button></div>
+          <p class="core-method-note"><b id="core-method-name">argmax match</b><span id="core-method-detail">1[argmax(P) = argmax(C)] · coarse dominant-category recovery.</span></p>
+        </div>
         <p class="core-lens-boundary"><b>Interpretation boundary</b><span id="core-lens-boundary">Agreement between P and C does not establish satisfaction, total interest, or causal personalization success.</span></p>
       </div>
     </section>
@@ -309,6 +312,6 @@
   </main>
 
   <footer><span>PEC Gap interactive tutorial, 2026</span><a href="#top">Back to top ↑</a></footer>
-  <script src="tutorial.js?v=7"></script>
+  <script src="tutorial.js?v=8"></script>
 </body>
 </html>
