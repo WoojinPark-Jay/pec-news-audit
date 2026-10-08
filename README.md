@@ -1,8 +1,6 @@
 # PEC News Audit
 
-## [Open the project page →](https://woojinpark-jay.github.io/pec-news-audit/)
-
-**Paper:** [arXiv:2610.10173](https://arxiv.org/abs/2610.10173)
+**[Project page →](https://woojinpark-jay.github.io/pec-news-audit/)**
 
 The project page presents the paper's abstract, PEC audit framework, protocol,
 main findings, and public research artifacts in one concise visual overview.
@@ -19,6 +17,8 @@ This repository accompanies a measurement audit of a deployed mobile news recomm
 - **Exposure (E):** logged recommendation lists.
 - **Surface pathways (S):** app entry paths such as headline, category, home/feed, newsroom, article detail, search, and notifications.
 - **Consumption (C):** observed article clicks.
+
+**Paper:** [arXiv:2610.10173](https://arxiv.org/abs/2610.10173)
 
 The main purpose of this repository is to make the public parts of the audit inspectable without releasing private user-level logs. It provides metric code, aggregate result tables, figure artifacts, release-safe notebooks, and synthetic schemas. Raw operational logs, row-level recommendation lists, user click histories, profile snapshots, and production identifiers are not included.
 
