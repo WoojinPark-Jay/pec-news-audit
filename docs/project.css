@@ -154,6 +154,7 @@ main, footer { width: min(calc(100% - 48px), var(--max)); margin-inline: auto; }
 .artifact-list span { color: var(--accent); font-size: .65rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; }
 .artifact-list p { margin: 0; color: var(--ink); font-size: .82rem; }
 .citation h2 { margin-bottom: 20px; }
+.citation .actions { margin: 0 0 12px; }
 .code-wrap { position: relative; border: 1px solid var(--line); background: var(--code); }
 .code-wrap pre { margin: 0; padding: 22px; overflow-x: auto; color: var(--ink); font: .75rem/1.6 ui-monospace, SFMono-Regular, Menlo, monospace; }
 #copy-citation { position: absolute; top: 10px; right: 10px; padding: 5px 9px; border: 1px solid var(--line); background: var(--surface); color: var(--muted); cursor: pointer; }

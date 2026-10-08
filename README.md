@@ -251,6 +251,8 @@ Please cite the arXiv preprint when referring to the research findings:
 }
 ```
 
+You can also [download the ready-to-use `.bib` file](docs/pec-gap.bib).
+
 GitHub also generates APA and BibTeX citations from [CITATION.cff](CITATION.cff)
 through the **Cite this repository** menu. The manuscript is currently under
 review; do not describe it as accepted or conference-published unless its
