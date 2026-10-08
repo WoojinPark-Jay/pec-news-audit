@@ -44,6 +44,7 @@ main, footer { width: min(calc(100% - 48px), var(--max)); margin-inline: auto; }
 }
 .dek { max-width: 720px; margin: 16px auto 0; color: var(--muted); font-size: 1rem; line-height: 1.5; }
 .hero-author { color: var(--ink); font-weight: 650; text-decoration-thickness: 1px; }
+.dek-follow { display: block; margin-top: 2px; }
 .hero-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-top: 17px; }
 .button {
   display: inline-flex; align-items: center; justify-content: center; min-height: 36px; padding: 0 14px;
