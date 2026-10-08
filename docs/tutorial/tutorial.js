@@ -101,7 +101,8 @@ function jsDivergence(p, q) {
 }
 function drawDistributionChart(exposure, clicks) {
   const x = [55, 195, 335, 475];
-  const y = (value) => 134 - Math.min(.75, value) / .75 * 114;
+  const baseline = 111;
+  const y = (value) => baseline - Math.min(.75, value) / .75 * 96;
   const pointPairs = (values) => values.map((value, index) => [x[index], y(value)]);
   const smooth = (values) => {
     const points = pointPairs(values);
@@ -122,8 +123,8 @@ function drawDistributionChart(exposure, clicks) {
   const exposurePath = smooth(exposure); const clickPath = smooth(clicks);
   document.querySelector('#exposure-line').setAttribute('d', exposurePath);
   document.querySelector('#click-line').setAttribute('d', clickPath);
-  document.querySelector('#exposure-area').setAttribute('d', `${exposurePath} L ${x[x.length - 1]} 134 L ${x[0]} 134 Z`);
-  document.querySelector('#click-area').setAttribute('d', `${clickPath} L ${x[x.length - 1]} 134 L ${x[0]} 134 Z`);
+  document.querySelector('#exposure-area').setAttribute('d', `${exposurePath} L ${x[x.length - 1]} ${baseline} L ${x[0]} ${baseline} Z`);
+  document.querySelector('#click-area').setAttribute('d', `${clickPath} L ${x[x.length - 1]} ${baseline} L ${x[0]} ${baseline} Z`);
   const circles = (values, className) => values.map((value, index) => `<circle class="distribution-point ${className}" cx="${x[index]}" cy="${y(value).toFixed(1)}" r="5"><title>${preferenceCategories[index]}: ${(value * 100).toFixed(1)}%</title></circle>`).join('');
   document.querySelector('#exposure-points').innerHTML = circles(exposure, 'exposure');
   document.querySelector('#click-points').innerHTML = circles(clicks, 'clicks');

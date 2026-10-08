@@ -9,7 +9,7 @@
   <link rel="icon" href="../favicon.svg?v=1" type="image/svg+xml">
   <link rel="icon" href="../favicon-32.png?v=1" type="image/png" sizes="32x32">
   <script>try{document.documentElement.dataset.theme=localStorage.getItem('pec-theme')||'light'}catch(e){document.documentElement.dataset.theme='light'}</script>
-  <link rel="stylesheet" href="tutorial.css?v=4">
+  <link rel="stylesheet" href="tutorial.css?v=5">
 </head>
 <body>
   <header class="tutorial-header">
@@ -27,14 +27,13 @@
 
   <main id="top">
     <section class="tutorial-hero">
-      <p class="eyebrow">Interactive paper companion · synthetic examples</p>
       <h1>What did the platform actually observe?</h1>
-      <p class="dek">Follow a news item across preference, recommendation logs, app surfaces, and clicks. Change the evidence, calculate the audit metrics, and see where an interpretation must stop.</p>
+      <p class="dek">An interactive guide to the measurement logic in <em>When Exposure Is Not Attention</em>. Follow a news item across preference, recommendation logs, app surfaces, and clicks; then test where an interpretation must stop.</p>
       <div class="hero-actions">
         <a class="button" href="#journey">Start the tutorial</a>
         <a class="button quiet" href="https://arxiv.org/abs/2610.10173">Read the paper</a>
       </div>
-      <p class="boundary-banner"><strong>Core lesson.</strong> A platform trace supports only the claim its measurement can carry: logged exposure is not attention, and a click is not reading depth. Synthetic examples and paper results are labeled separately below.</p>
+      <p class="boundary-banner"><strong>Scope.</strong> A platform trace supports only the claim its measurement can carry: logged exposure is not attention, and a click is not reading depth. Synthetic examples and paper results are labeled separately below.</p>
     </section>
 
     <nav class="progress-nav" aria-label="Tutorial steps">
@@ -46,7 +45,7 @@
     </nav>
 
     <section class="tutorial-section" id="journey">
-      <div class="section-kicker">01 · User journey</div>
+      <div class="section-kicker">User journey</div>
       <div class="section-heading">
         <div><h2>The same click can leave different traces.</h2><p>Select a scenario. Each card reports a stored trace, not an assumed stage in a perfect funnel.</p></div>
         <div class="scenario-tabs" role="tablist" aria-label="Synthetic journey scenarios">
@@ -69,10 +68,10 @@
 
       <div class="preference-lab">
         <div class="preference-intro">
-          <span class="mini-kicker">Preference simulator · synthetic</span>
-          <h3>Does the profile represent what the user later clicks?</h3>
-          <p>Move the stored profile weights and click counts. A top-category match asks only whether the largest category agrees. Jaccard asks how much the active category sets overlap. Cosine also considers their relative weights.</p>
-          <p class="small"><strong>P is stated preference:</strong> categories explicitly stored in the user profile. <strong>C is observed click consumption:</strong> categories attached to clicked articles. Neither is a complete measure of interest.</p>
+          <span class="mini-kicker">Synthetic preference simulator</span>
+          <h3>Compare the profile with later clicks.</h3>
+          <p>Adjust P and C. Top match compares the largest categories, Jaccard compares active sets, and cosine compares their weights.</p>
+          <p class="small"><strong>P</strong> = stored stated preference. <strong>C</strong> = clicked-article categories. Neither represents total interest.</p>
         </div>
         <div class="preference-controls" id="preference-controls">
           <div class="preference-head"><span>Category</span><span>P · profile</span><span>C · clicks</span></div>
@@ -99,7 +98,7 @@
     </section>
 
     <section class="tutorial-section" id="traceability">
-      <div class="section-kicker">02 · Traceability lab</div>
+      <div class="section-kicker">Traceability lab</div>
       <div class="section-heading">
         <div><h2>How much click activity can the retained list trace?</h2><p>Toggle the synthetic click rows to see why a logged list is informative without representing the whole journey.</p></div>
         <div class="paper-marker"><span>Paper result</span><strong>11.29%</strong><small>same-day observed hit</small></div>
@@ -128,9 +127,9 @@
     </section>
 
     <section class="tutorial-section" id="metrics">
-      <div class="section-kicker">03 · Diversity calculator</div>
+      <div class="section-kicker">Diversity calculator</div>
       <div class="section-heading">
-        <div><h2>Change the distributions, then change the conclusion.</h2><p>Adjust four category counts. The calculator treats exposure and clicks as separate distributions and recomputes their diversity.</p></div>
+        <div><h2>Change the distribution, change the conclusion.</h2><p>Adjust four category counts. Exposure and clicks remain separate distributions throughout the calculation.</p></div>
         <button class="reset-button" id="reset-metrics" type="button">Reset example</button>
       </div>
 
@@ -146,8 +145,8 @@
 
         <div class="distribution-panel">
           <div class="chart-heading"><span>Distribution profile</span><div><i class="legend-exposure"></i>Exposure <i class="legend-clicks"></i>Clicks</div></div>
-          <svg class="distribution-chart" id="distribution-chart" viewBox="0 0 500 180" role="img" aria-label="Exposure and click category distributions">
-            <g class="chart-grid"><line x1="34" y1="20" x2="486" y2="20"/><line x1="34" y1="58" x2="486" y2="58"/><line x1="34" y1="96" x2="486" y2="96"/><line x1="34" y1="134" x2="486" y2="134"/><text x="3" y="24">75%</text><text x="3" y="62">50%</text><text x="3" y="100">25%</text><text x="14" y="138">0</text><text class="category-label" x="55" y="162">Politics</text><text class="category-label" x="195" y="162">Technology</text><text class="category-label" x="335" y="162">Climate</text><text class="category-label" x="475" y="162">Culture</text></g>
+          <svg class="distribution-chart" id="distribution-chart" viewBox="0 0 500 155" role="img" aria-label="Exposure and click category distributions">
+            <g class="chart-grid"><line x1="34" y1="15" x2="486" y2="15"/><line x1="34" y1="47" x2="486" y2="47"/><line x1="34" y1="79" x2="486" y2="79"/><line x1="34" y1="111" x2="486" y2="111"/><text x="3" y="19">75%</text><text x="3" y="51">50%</text><text x="3" y="83">25%</text><text x="14" y="115">0</text><text class="category-label" x="55" y="137">Politics</text><text class="category-label" x="195" y="137">Technology</text><text class="category-label" x="335" y="137">Climate</text><text class="category-label" x="475" y="137">Culture</text></g>
             <path id="exposure-area" class="distribution-area exposure-area" d=""/><path id="click-area" class="distribution-area click-area" d=""/>
             <path id="exposure-line" class="distribution-line exposure-line" d=""/><path id="click-line" class="distribution-line click-line" d=""/>
             <g id="exposure-points"></g><g id="click-points"></g>
@@ -186,9 +185,9 @@
     </section>
 
     <section class="tutorial-section" id="evidence">
-      <div class="section-kicker">04 · Paper evidence explorer</div>
+      <div class="section-kicker">Paper evidence</div>
       <div class="section-heading">
-        <div><h2>Read the result together with its denominator and boundary.</h2><p>These panels use aggregate values reported in the paper. Switch questions and conditions to see what changes—and what the result does not establish.</p></div>
+        <div><h2>Read each result with its denominator and boundary.</h2><p>Switch questions and conditions to see what changes—and what the result does not establish.</p></div>
       </div>
       <div class="evidence-tabs" role="tablist" aria-label="Paper research questions">
         <button class="active" data-evidence="rq1" type="button"><b>RQ1</b> Preference alignment</button>
@@ -200,9 +199,9 @@
     </section>
 
     <section class="tutorial-section" id="claims">
-      <div class="section-kicker">05 · Claim checker</div>
+      <div class="section-kicker">Claim checker</div>
       <div class="section-heading">
-        <div><h2>Name the evidence before making the claim.</h2><p>Select a statement to see the strongest interpretation supported by the available trace.</p></div>
+        <div><h2>Match each claim to its evidence.</h2><p>Select a statement to see the strongest interpretation supported by the available trace.</p></div>
       </div>
       <div class="claim-lab">
         <div class="claim-list" role="list">
@@ -245,7 +244,7 @@
     </section>
   </main>
 
-  <footer><span>PEC Gap interactive tutorial · 2026</span><a href="#top">Back to top ↑</a></footer>
+  <footer><span>PEC Gap interactive tutorial, 2026</span><a href="#top">Back to top ↑</a></footer>
   <script src="tutorial.js?v=4"></script>
 </body>
 </html>
