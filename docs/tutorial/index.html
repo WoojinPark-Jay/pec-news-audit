@@ -9,7 +9,7 @@
   <link rel="icon" href="../favicon.svg?v=1" type="image/svg+xml">
   <link rel="icon" href="../favicon-32.png?v=1" type="image/png" sizes="32x32">
   <script>try{document.documentElement.dataset.theme=localStorage.getItem('pec-theme')||'light'}catch(e){document.documentElement.dataset.theme='light'}</script>
-  <link rel="stylesheet" href="tutorial.css?v=3">
+  <link rel="stylesheet" href="tutorial.css?v=4">
 </head>
 <body>
   <header class="tutorial-header">
@@ -149,7 +149,7 @@
           <svg class="distribution-chart" id="distribution-chart" viewBox="0 0 500 180" role="img" aria-label="Exposure and click category distributions">
             <g class="chart-grid"><line x1="34" y1="20" x2="486" y2="20"/><line x1="34" y1="58" x2="486" y2="58"/><line x1="34" y1="96" x2="486" y2="96"/><line x1="34" y1="134" x2="486" y2="134"/><text x="3" y="24">75%</text><text x="3" y="62">50%</text><text x="3" y="100">25%</text><text x="14" y="138">0</text><text class="category-label" x="55" y="162">Politics</text><text class="category-label" x="195" y="162">Technology</text><text class="category-label" x="335" y="162">Climate</text><text class="category-label" x="475" y="162">Culture</text></g>
             <path id="exposure-area" class="distribution-area exposure-area" d=""/><path id="click-area" class="distribution-area click-area" d=""/>
-            <polyline id="exposure-line" class="distribution-line exposure-line" points=""/><polyline id="click-line" class="distribution-line click-line" points=""/>
+            <path id="exposure-line" class="distribution-line exposure-line" d=""/><path id="click-line" class="distribution-line click-line" d=""/>
             <g id="exposure-points"></g><g id="click-points"></g>
           </svg>
           <div class="entropy-visual" aria-label="Entropy and effective category comparison">
@@ -157,7 +157,7 @@
             <div class="entropy-row"><b>Exposure</b><div class="entropy-track"><i id="exp-entropy-gauge"></i></div><strong id="exp-effective">0.000 · 0.00 effective categories</strong></div>
             <div class="entropy-row"><b>Clicks</b><div class="entropy-track"><i id="click-entropy-gauge"></i></div><strong id="click-effective">0.000 · 0.00 effective categories</strong></div>
           </div>
-          <p class="small">Each point is that category’s share of its own layer. Lines help compare the four labeled positions; the categories are not a continuous scale.</p>
+          <p class="small"><strong>Dots are the exact category probabilities.</strong> The smoothed silhouettes are visual guides: a flatter, broader profile has higher entropy; a sharper peak has lower entropy. Category positions are labels, not a continuous scale.</p>
         </div>
       </div>
 
@@ -246,6 +246,6 @@
   </main>
 
   <footer><span>PEC Gap interactive tutorial · 2026</span><a href="#top">Back to top ↑</a></footer>
-  <script src="tutorial.js?v=3"></script>
+  <script src="tutorial.js?v=4"></script>
 </body>
 </html>

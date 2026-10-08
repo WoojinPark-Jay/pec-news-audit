@@ -153,7 +153,7 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
 .distribution-chart { display: block; width: 100%; height: auto; margin-top: 8px; overflow: visible; }
 .chart-grid line { stroke: var(--line); stroke-width: 1; } .chart-grid text { fill: var(--muted); font-size: 9px; }
 .chart-grid text.category-label { font-size: 9px; text-anchor: middle; }
-.distribution-area { opacity: .09; } .exposure-area { fill: var(--e); } .click-area { fill: var(--c); }
+.distribution-area { opacity: .13; } .exposure-area { fill: var(--e); } .click-area { fill: var(--c); }
 .distribution-line { fill: none; stroke-width: 2.2; stroke-linejoin: round; stroke-linecap: round; transition: points .2s ease; }
 .exposure-line { stroke: var(--e); } .click-line { stroke: var(--c); }
 .distribution-point { stroke: var(--bg); stroke-width: 2; } .distribution-point.exposure { fill: var(--e); } .distribution-point.clicks { fill: var(--c); }

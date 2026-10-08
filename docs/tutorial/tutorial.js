@@ -102,12 +102,28 @@ function jsDivergence(p, q) {
 function drawDistributionChart(exposure, clicks) {
   const x = [55, 195, 335, 475];
   const y = (value) => 134 - Math.min(.75, value) / .75 * 114;
-  const points = (values) => values.map((value, index) => `${x[index]},${y(value).toFixed(1)}`).join(' ');
-  const area = (values) => `M ${x[0]} 134 L ${values.map((value, index) => `${x[index]} ${y(value).toFixed(1)}`).join(' L ')} L ${x[x.length - 1]} 134 Z`;
-  document.querySelector('#exposure-line').setAttribute('points', points(exposure));
-  document.querySelector('#click-line').setAttribute('points', points(clicks));
-  document.querySelector('#exposure-area').setAttribute('d', area(exposure));
-  document.querySelector('#click-area').setAttribute('d', area(clicks));
+  const pointPairs = (values) => values.map((value, index) => [x[index], y(value)]);
+  const smooth = (values) => {
+    const points = pointPairs(values);
+    let d = `M ${points[0][0]} ${points[0][1].toFixed(1)}`;
+    for (let i = 0; i < points.length - 1; i += 1) {
+      const previous = points[i - 1] || points[i];
+      const current = points[i];
+      const next = points[i + 1];
+      const after = points[i + 2] || next;
+      const c1x = current[0] + (next[0] - previous[0]) / 6;
+      const c1y = current[1] + (next[1] - previous[1]) / 6;
+      const c2x = next[0] - (after[0] - current[0]) / 6;
+      const c2y = next[1] - (after[1] - current[1]) / 6;
+      d += ` C ${c1x.toFixed(1)} ${c1y.toFixed(1)}, ${c2x.toFixed(1)} ${c2y.toFixed(1)}, ${next[0]} ${next[1].toFixed(1)}`;
+    }
+    return d;
+  };
+  const exposurePath = smooth(exposure); const clickPath = smooth(clicks);
+  document.querySelector('#exposure-line').setAttribute('d', exposurePath);
+  document.querySelector('#click-line').setAttribute('d', clickPath);
+  document.querySelector('#exposure-area').setAttribute('d', `${exposurePath} L ${x[x.length - 1]} 134 L ${x[0]} 134 Z`);
+  document.querySelector('#click-area').setAttribute('d', `${clickPath} L ${x[x.length - 1]} 134 L ${x[0]} 134 Z`);
   const circles = (values, className) => values.map((value, index) => `<circle class="distribution-point ${className}" cx="${x[index]}" cy="${y(value).toFixed(1)}" r="5"><title>${preferenceCategories[index]}: ${(value * 100).toFixed(1)}%</title></circle>`).join('');
   document.querySelector('#exposure-points').innerHTML = circles(exposure, 'exposure');
   document.querySelector('#click-points').innerHTML = circles(clicks, 'clicks');
