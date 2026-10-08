@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PEC Audit Tutorial | When Exposure Is Not Attention</title>
+  <meta name="description" content="An interactive tutorial on preference, logged exposure, interface pathways, click consumption, and observability boundaries in news recommender audits.">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" href="../favicon.svg?v=1" type="image/svg+xml">
+  <link rel="icon" href="../favicon-32.png?v=1" type="image/png" sizes="32x32">
+  <script>try{document.documentElement.dataset.theme=localStorage.getItem('pec-theme')||'light'}catch(e){document.documentElement.dataset.theme='light'}</script>
+  <link rel="stylesheet" href="tutorial.css?v=1">
+</head>
+<body>
+  <header class="tutorial-header">
+    <a class="wordmark" href="../"><span>PEC</span> Gap</a>
+    <nav aria-label="Tutorial navigation">
+      <a href="#journey">Journey</a>
+      <a href="#traceability">Traceability</a>
+      <a href="#metrics">Metrics</a>
+      <a href="#claims">Claims</a>
+      <a href="../">Project page</a>
+      <button id="theme-toggle" type="button" aria-label="Switch color theme">◐</button>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="tutorial-hero">
+      <p class="eyebrow">Interactive paper companion · synthetic examples</p>
+      <h1>What did the platform actually observe?</h1>
+      <p class="dek">Follow a news item across preference, recommendation logs, app surfaces, and clicks. Change the evidence, calculate the audit metrics, and see where an interpretation must stop.</p>
+      <div class="hero-actions">
+        <a class="button" href="#journey">Start the tutorial</a>
+        <a class="button quiet" href="https://arxiv.org/abs/2610.10173">Read the paper</a>
+      </div>
+      <p class="boundary-banner"><strong>Teaching boundary.</strong> Every person, article, and event below is synthetic. Paper results are labeled separately and cannot be reconstructed from these examples.</p>
+    </section>
+
+    <nav class="progress-nav" aria-label="Tutorial steps">
+      <a href="#journey"><b>01</b><span>Trace the journey</span></a>
+      <a href="#traceability"><b>02</b><span>Test traceability</span></a>
+      <a href="#metrics"><b>03</b><span>Calculate diversity</span></a>
+      <a href="#claims"><b>04</b><span>Check the claim</span></a>
+    </nav>
+
+    <section class="tutorial-section" id="journey">
+      <div class="section-kicker">01 · User journey</div>
+      <div class="section-heading">
+        <div><h2>The same click can leave different traces.</h2><p>Select a scenario. Each card reports a stored trace, not an assumed stage in a perfect funnel.</p></div>
+        <div class="scenario-tabs" role="tablist" aria-label="Synthetic journey scenarios">
+          <button class="active" data-scenario="listed" type="button">Listed click</button>
+          <button data-scenario="search" type="button">Search click</button>
+          <button data-scenario="noclick" type="button">Logged, no click</button>
+        </div>
+      </div>
+
+      <div class="journey-grid" aria-live="polite">
+        <article class="trace-card p-card"><span>P</span><small>Preference</small><h3 id="journey-p-title">Climate</h3><p id="journey-p-copy">The stored profile assigns climate a high weight.</p></article>
+        <article class="trace-card e-card"><span>E</span><small>Logged exposure</small><h3 id="journey-e-title">Present · rank 3</h3><p id="journey-e-copy">The article appears in the retained same-day recommendation list.</p></article>
+        <article class="trace-card s-card"><span>S</span><small>Surface pathway</small><h3 id="journey-s-title">Home / feed</h3><p id="journey-s-copy">The click event records a feed entry pathway.</p></article>
+        <article class="trace-card c-card"><span>C</span><small>Consumption</small><h3 id="journey-c-title">Clicked</h3><p id="journey-c-copy">A click is observed. Reading depth is not.</p></article>
+      </div>
+      <div class="interpretation-grid">
+        <div><span>Supported observation</span><p id="supported-observation">This article is present in the retained list and later appears as a click event.</p></div>
+        <div><span>Still outside the data</span><p id="unsupported-inference">The logs do not establish that the user visually attended to the list entry or read the article deeply.</p></div>
+      </div>
+    </section>
+
+    <section class="tutorial-section" id="traceability">
+      <div class="section-kicker">02 · Traceability lab</div>
+      <div class="section-heading">
+        <div><h2>How much click activity can the retained list trace?</h2><p>Toggle the synthetic click rows to see why a logged list is informative without representing the whole journey.</p></div>
+        <div class="paper-marker"><span>Paper result</span><strong>11.29%</strong><small>same-day observed hit</small></div>
+      </div>
+
+      <div class="trace-lab">
+        <div class="click-table" id="click-table">
+          <div class="click-row header"><span>Click</span><span>Surface</span><span>In retained list?</span></div>
+          <label class="click-row"><span>Climate policy</span><span>Home / feed</span><input type="checkbox" checked></label>
+          <label class="click-row"><span>Local rail</span><span>Search</span><input type="checkbox"></label>
+          <label class="click-row"><span>Battery research</span><span>Category</span><input type="checkbox" checked></label>
+          <label class="click-row"><span>Election analysis</span><span>Headline</span><input type="checkbox"></label>
+          <label class="click-row"><span>Health guide</span><span>Notification</span><input type="checkbox"></label>
+          <label class="click-row"><span>Sports recap</span><span>Newsroom</span><input type="checkbox"></label>
+          <label class="click-row"><span>AI forecast</span><span>Article detail</span><input type="checkbox"></label>
+          <label class="click-row"><span>Housing policy</span><span>Home / feed</span><input type="checkbox"></label>
+        </div>
+        <div class="trace-output">
+          <span class="output-label">Synthetic traceability</span>
+          <strong id="trace-rate">25.00%</strong>
+          <p><b id="trace-count">2 of 8</b> clicks are present in the retained same-day list.</p>
+          <div class="meter"><i id="trace-meter"></i></div>
+          <p class="small">A miss means “not found in this retained list.” It does not prove the platform never displayed the article.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="tutorial-section" id="metrics">
+      <div class="section-kicker">03 · Diversity calculator</div>
+      <div class="section-heading">
+        <div><h2>Change the distributions, then change the conclusion.</h2><p>Adjust four category counts. The calculator treats exposure and clicks as separate distributions and recomputes their diversity.</p></div>
+        <button class="reset-button" id="reset-metrics" type="button">Reset example</button>
+      </div>
+
+      <div class="metric-lab">
+        <div class="slider-panel">
+          <div class="slider-head"><span>Category</span><span>Exposure</span><span>Clicks</span></div>
+          <div class="slider-row"><b>Politics</b><input aria-label="Politics exposure count" data-layer="exposure" data-category="Politics" type="range" min="0" max="20" value="12"><output>12</output><input aria-label="Politics click count" data-layer="clicks" data-category="Politics" type="range" min="0" max="20" value="8"><output>8</output></div>
+          <div class="slider-row"><b>Technology</b><input aria-label="Technology exposure count" data-layer="exposure" data-category="Technology" type="range" min="0" max="20" value="10"><output>10</output><input aria-label="Technology click count" data-layer="clicks" data-category="Technology" type="range" min="0" max="20" value="3"><output>3</output></div>
+          <div class="slider-row"><b>Climate</b><input aria-label="Climate exposure count" data-layer="exposure" data-category="Climate" type="range" min="0" max="20" value="9"><output>9</output><input aria-label="Climate click count" data-layer="clicks" data-category="Climate" type="range" min="0" max="20" value="2"><output>2</output></div>
+          <div class="slider-row"><b>Culture</b><input aria-label="Culture exposure count" data-layer="exposure" data-category="Culture" type="range" min="0" max="20" value="9"><output>9</output><input aria-label="Culture click count" data-layer="clicks" data-category="Culture" type="range" min="0" max="20" value="1"><output>1</output></div>
+          <p class="small">Counts are invented for teaching. Zero-count categories remain visible but contribute no probability mass.</p>
+        </div>
+
+        <div class="distribution-panel">
+          <div class="distribution" id="exposure-bars"><span>Logged exposure</span></div>
+          <div class="distribution" id="click-bars"><span>Click consumption</span></div>
+        </div>
+      </div>
+
+      <div class="metric-output" aria-live="polite">
+        <div><span>Exposure normalized entropy</span><strong id="exp-entropy">0.000</strong></div>
+        <div><span>Click normalized entropy</span><strong id="click-entropy">0.000</strong></div>
+        <div><span>HHI gap · clicks − exposure</span><strong id="hhi-gap">0.000</strong></div>
+        <div><span>JS divergence</span><strong id="js-divergence">0.000</strong></div>
+      </div>
+      <p class="metric-reading" id="metric-reading">The current click distribution is more concentrated than the logged exposure distribution.</p>
+    </section>
+
+    <section class="tutorial-section" id="claims">
+      <div class="section-kicker">04 · Claim checker</div>
+      <div class="section-heading">
+        <div><h2>Name the evidence before making the claim.</h2><p>Select a statement to see the strongest interpretation supported by the available trace.</p></div>
+      </div>
+      <div class="claim-lab">
+        <div class="claim-list" role="list">
+          <button class="active" data-claim="logged" type="button">“The article was logged in a recommendation list.”</button>
+          <button data-claim="seen" type="button">“The user saw and attended to the article.”</button>
+          <button data-claim="clicked" type="button">“The user clicked the article.”</button>
+          <button data-claim="read" type="button">“The user read the article deeply.”</button>
+          <button data-claim="caused" type="button">“The recommendation caused the click.”</button>
+          <button data-claim="diverse" type="button">“The system exposed the user to diverse content.”</button>
+        </div>
+        <div class="claim-result" id="claim-result" aria-live="polite">
+          <span class="status supported" id="claim-status">Supported</span>
+          <h3 id="claim-title">Directly observed in E</h3>
+          <p id="claim-copy">The retained recommendation log can establish list membership and recorded rank for that list. It does not establish visual attention.</p>
+          <div class="evidence-chips" id="evidence-chips"><b>E</b></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing-section">
+      <h2>The audit ends where the observable trace ends.</h2>
+      <p>Preference, logged exposure, interface pathways, and clicks each answer a different question. Responsible evaluation keeps those layers separate, reports the eligible denominator, and states what remains unobserved.</p>
+      <div class="hero-actions">
+        <a class="button" href="../">Return to the project page</a>
+        <a class="button quiet" href="https://github.com/WoojinPark-Jay/pec-news-audit">Inspect the public artifact</a>
+      </div>
+    </section>
+  </main>
+
+  <footer><span>PEC Gap interactive tutorial · 2026</span><a href="#top">Back to top ↑</a></footer>
+  <script src="tutorial.js?v=1"></script>
+</body>
+</html>

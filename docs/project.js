@@ -1,3 +1,9 @@
+const route = new URLSearchParams(window.location.search);
+if (route.get('view') === 'tutorial') {
+  const language = route.get('lang') || 'en';
+  window.location.replace(`tutorial/?lang=${encodeURIComponent(language)}`);
+}
+
 const dialog = document.querySelector('#lightbox');
 const dialogImage = dialog.querySelector('img');
 const themeToggle = document.querySelector('#theme-toggle');
