@@ -105,7 +105,7 @@ function renderCoreLens(key) {
   document.querySelector('#core-lens-boundary').textContent = lens.boundary;
 }
 document.querySelectorAll('[data-core-lens]').forEach((button) => {
-  ['mouseenter', 'focus', 'click'].forEach((eventName) => button.addEventListener(eventName, () => renderCoreLens(button.dataset.coreLens)));
+  ['focus', 'click'].forEach((eventName) => button.addEventListener(eventName, () => renderCoreLens(button.dataset.coreLens)));
 });
 renderCoreLens('alignment');
 

@@ -58,21 +58,24 @@ main, footer { width: min(calc(100% - 48px), var(--max)); margin-inline: auto; }
 .pec-core-heading .section-kicker { display: block; margin-bottom: 7px; }
 .pec-core-heading h2 { margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.7rem, 3vw, 2.45rem); font-weight: 600; line-height: 1.04; letter-spacing: -.035em; }
 .pec-core-heading > p { margin: 0; color: var(--muted); font-size: .76rem; line-height: 1.45; }
-.trace-system { display: grid; grid-template-columns: 1fr 42px 1fr 42px 1fr 42px 1fr; align-items: stretch; padding: 5px 5px 11px; }
-.trace-stack { position: relative; isolation: isolate; min-width: 0; padding: 12px; border: 1px solid var(--line-strong); background: var(--bg); transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease; }
-.trace-stack::before, .trace-stack::after { content: ""; position: absolute; z-index: -1; inset: 0; border: 1px solid var(--line); background: var(--bg); }
+.trace-system { position: relative; display: grid; grid-template-columns: 1fr 42px 1fr 42px 1fr 42px 1fr; align-items: stretch; padding: 5px 5px 11px; }
+.trace-system::before { content: ""; position: absolute; z-index: -2; left: 12px; right: 12px; top: 50%; height: 1px; background: var(--line); }
+.trace-stack { position: relative; isolation: isolate; min-width: 0; padding: 12px; border: 1px solid var(--line-strong); background: var(--bg); transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease, background .2s ease; }
+.trace-stack::before, .trace-stack::after { content: ""; position: absolute; z-index: -1; inset: 0; border: 1px solid var(--line); background: var(--surface); }
 .trace-stack::before { transform: translate(3px,3px); }
 .trace-stack::after { transform: translate(6px,6px); }
 .core-p { --layer-color: var(--p); } .core-e { --layer-color: var(--e); }
 .core-s { --layer-color: var(--s); } .core-c { --layer-color: var(--c); }
-.trace-stack.is-related { transform: translateY(-3px); border-color: var(--layer-color); box-shadow: inset 0 -3px var(--layer-color); }
-.stack-title { display: flex; align-items: center; gap: 8px; }
-.stack-title b { display: grid; place-items: center; width: 29px; height: 29px; border: 1px solid currentColor; border-radius: 50%; font-family: Georgia, serif; font-size: 1rem; font-weight: 500; }
+.trace-stack.is-related { transform: translateY(-3px); border-color: var(--ink); background: linear-gradient(180deg, var(--surface) 0 48px, var(--bg) 48px); box-shadow: inset 0 -3px var(--ink); }
+.stack-title { display: flex; align-items: center; gap: 8px; padding-bottom: 9px; border-bottom: 1px solid var(--line); }
+.stack-title b { display: grid; place-items: center; width: 29px; height: 29px; border: 1px solid currentColor; border-radius: 50%; background: var(--bg); font-family: Georgia, serif; font-size: 1rem; font-weight: 500; transition: background .2s ease, color .2s ease; }
 .stack-title span { font-size: .69rem; font-weight: 750; letter-spacing: .05em; text-transform: uppercase; }
 .core-p .stack-title b { color: var(--p); } .core-e .stack-title b { color: var(--e); }
 .core-s .stack-title b { color: var(--s); } .core-c .stack-title b { color: var(--c); }
-.stack-chips { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 13px; }
-.stack-chips span { padding: 3px 6px; border: 1px solid var(--line); background: var(--surface); color: var(--muted); font: 600 .58rem/1.2 ui-monospace, SFMono-Regular, Menlo, monospace; white-space: nowrap; }
+.trace-stack.is-related .stack-title b { border-color: var(--layer-color); background: var(--layer-color); color: var(--bg); }
+.stack-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 11px; }
+.stack-chips span { padding: 3px 7px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink); font: 600 .58rem/1.2 ui-monospace, SFMono-Regular, Menlo, monospace; white-space: nowrap; }
+.trace-stack.is-related .stack-chips span { border-color: var(--line-strong); background: var(--bg); }
 .trace-stack p { margin: 11px 0 0; color: var(--muted); font-size: .65rem; }
 .system-gap { position: relative; display: grid; place-items: center; }
 .system-gap i { position: absolute; left: 5px; right: 5px; height: 1px; background: var(--line-strong); }
