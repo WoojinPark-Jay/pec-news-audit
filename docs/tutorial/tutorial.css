@@ -310,6 +310,11 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
 .claim-result > p { max-width: 650px; margin: 0; color: var(--muted); font-size: .79rem; }
 .evidence-chips { display: flex; gap: 5px; }
 .evidence-chips b { display: grid; place-items: center; width: 31px; height: 31px; border: 1px solid var(--line-strong); border-radius: 50%; font-family: Georgia, serif; font-weight: 400; }
+.evidence-chips .evidence-p { border-color: var(--p); color: var(--p); }
+.evidence-chips .evidence-e { border-color: var(--e); color: var(--e); }
+.evidence-chips .evidence-s { border-color: var(--s); color: var(--s); }
+.evidence-chips .evidence-c { border-color: var(--c); color: var(--c); }
+.evidence-chips .evidence-unknown { border-style: dashed; color: var(--muted); }
 .claim-reasoning { display: grid; grid-template-columns: 1fr 1fr; margin-top: 14px; border-block: 1px solid var(--line); }
 .claim-reasoning > div { padding: 10px 12px 10px 0; }
 .claim-reasoning > div + div { padding-left: 12px; border-left: 1px solid var(--line); }

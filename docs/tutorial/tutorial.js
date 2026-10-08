@@ -82,7 +82,11 @@ const coreLenses = {
 };
 function renderCoreMethod(lens, index) {
   const method = lens.methods[index];
-  document.querySelectorAll('[data-core-method]').forEach((button) => button.classList.toggle('active', Number(button.dataset.coreMethod) === index));
+  document.querySelectorAll('[data-core-method]').forEach((button) => {
+    const active = Number(button.dataset.coreMethod) === index;
+    button.classList.toggle('active', active);
+    button.setAttribute('aria-pressed', String(active));
+  });
   document.querySelector('#core-method-name').textContent = method[0];
   document.querySelector('#core-method-detail').textContent = method[1];
 }
@@ -111,7 +115,11 @@ renderCoreLens('alignment');
 
 document.querySelectorAll('[data-scenario]').forEach((button) => {
   button.addEventListener('click', () => {
-    document.querySelectorAll('[data-scenario]').forEach((item) => item.classList.toggle('active', item === button));
+    document.querySelectorAll('[data-scenario]').forEach((item) => {
+      const active = item === button;
+      item.classList.toggle('active', active);
+      item.setAttribute('aria-selected', String(active));
+    });
     const s = scenarios[button.dataset.scenario];
     ['p','e','s','c'].forEach((key) => {
       document.querySelector(`#journey-${key}-title`).textContent = s[key][0];
@@ -307,7 +315,11 @@ function renderRQ4(selected = 'Same-window') {
 }
 const evidenceRenderers = { rq1: renderRQ1, rq2: renderRQ2, rq3: renderRQ3, rq4: renderRQ4 };
 document.querySelectorAll('[data-evidence]').forEach((button) => button.addEventListener('click', () => {
-  document.querySelectorAll('[data-evidence]').forEach((item) => item.classList.toggle('active', item === button));
+  document.querySelectorAll('[data-evidence]').forEach((item) => {
+    const active = item === button;
+    item.classList.toggle('active', active);
+    item.setAttribute('aria-selected', String(active));
+  });
   evidenceRenderers[button.dataset.evidence]();
 }));
 renderRQ1();
@@ -325,7 +337,11 @@ const claims = {
 };
 document.querySelectorAll('[data-claim]').forEach((button) => {
   button.addEventListener('click', () => {
-    document.querySelectorAll('[data-claim]').forEach((item) => item.classList.toggle('active', item === button));
+    document.querySelectorAll('[data-claim]').forEach((item) => {
+      const active = item === button;
+      item.classList.toggle('active', active);
+      item.setAttribute('aria-pressed', String(active));
+    });
     const claim = claims[button.dataset.claim];
     const status = document.querySelector('#claim-status');
     status.textContent = claim.status; status.className = `status ${claim.className}`;
@@ -334,13 +350,16 @@ document.querySelectorAll('[data-claim]').forEach((button) => {
     document.querySelector('#claim-evidence').textContent = claim.evidence;
     document.querySelector('#claim-boundary').textContent = claim.boundary;
     document.querySelector('#claim-rewrite').textContent = claim.rewrite;
-    document.querySelector('#evidence-chips').innerHTML = claim.chips.map((chip) => `<b>${chip}</b>`).join('');
+    document.querySelector('#evidence-chips').innerHTML = claim.chips.map((chip) => `<b class="evidence-${chip === '?' ? 'unknown' : chip.toLowerCase()}">${chip}</b>`).join('');
   });
 });
 
 const themeToggle = document.querySelector('#theme-toggle');
+const updateThemeLabel = () => themeToggle.setAttribute('aria-label', `Switch to ${document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'} theme`);
+updateThemeLabel();
 themeToggle.addEventListener('click', () => {
   const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
   document.documentElement.dataset.theme = next;
   localStorage.setItem('pec-theme', next);
+  updateThemeLabel();
 });

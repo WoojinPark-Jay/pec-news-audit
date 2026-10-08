@@ -6,10 +6,21 @@
   <title>PEC Audit Tutorial | When Exposure Is Not Attention</title>
   <meta name="description" content="An interactive tutorial on preference, logged exposure, interface pathways, click consumption, and observability boundaries in news recommender audits.">
   <meta name="theme-color" content="#ffffff">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="PEC Audit Tutorial | When Exposure Is Not Attention">
+  <meta property="og:description" content="An interactive guide to what preference, recommendation, surface, and click traces can—and cannot—establish.">
+  <meta property="og:url" content="https://woojinpark-jay.github.io/pec-news-audit/tutorial/">
+  <meta property="og:image" content="https://woojinpark-jay.github.io/pec-news-audit/assets/project/pec-framework.png">
+  <meta property="og:image:alt" content="PEC audit framework connecting preference, exposure, interface surfaces, and consumption">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PEC Audit Tutorial | When Exposure Is Not Attention">
+  <meta name="twitter:description" content="Explore the measurement logic behind the Preference–Exposure–Consumption gap.">
+  <meta name="twitter:image" content="https://woojinpark-jay.github.io/pec-news-audit/assets/project/pec-framework.png">
+  <link rel="canonical" href="https://woojinpark-jay.github.io/pec-news-audit/tutorial/">
   <link rel="icon" href="../favicon.svg?v=1" type="image/svg+xml">
   <link rel="icon" href="../favicon-32.png?v=1" type="image/png" sizes="32x32">
   <script>try{document.documentElement.dataset.theme=localStorage.getItem('pec-theme')||'light'}catch(e){document.documentElement.dataset.theme='light'}</script>
-  <link rel="stylesheet" href="tutorial.css?v=12">
+  <link rel="stylesheet" href="tutorial.css?v=13">
 </head>
 <body>
   <header class="tutorial-header">
@@ -97,9 +108,9 @@
       <div class="section-heading">
         <div><h2>The same click can leave different traces.</h2><p>Select a scenario. Each card reports a stored trace, not an assumed stage in a perfect funnel.</p></div>
         <div class="scenario-tabs" role="tablist" aria-label="Synthetic journey scenarios">
-          <button class="active" data-scenario="listed" type="button">Listed click</button>
-          <button data-scenario="search" type="button">Search click</button>
-          <button data-scenario="noclick" type="button">Logged, no click</button>
+          <button class="active" data-scenario="listed" type="button" role="tab" aria-selected="true">Listed click</button>
+          <button data-scenario="search" type="button" role="tab" aria-selected="false">Search click</button>
+          <button data-scenario="noclick" type="button" role="tab" aria-selected="false">Logged, no click</button>
         </div>
       </div>
 
@@ -250,10 +261,10 @@
         <div><h2>Read each result with its denominator and boundary.</h2><p>Switch questions and conditions to see what changes—and what the result does not establish.</p></div>
       </div>
       <div class="evidence-tabs" role="tablist" aria-label="Paper research questions">
-        <button class="active" data-evidence="rq1" type="button"><b>RQ1</b> Preference alignment</button>
-        <button data-evidence="rq2" type="button"><b>RQ2</b> Traceability</button>
-        <button data-evidence="rq3" type="button"><b>RQ3</b> Diversity</button>
-        <button data-evidence="rq4" type="button"><b>RQ4</b> Diagnostic model</button>
+        <button class="active" data-evidence="rq1" type="button" role="tab" aria-selected="true"><b>RQ1</b> Preference alignment</button>
+        <button data-evidence="rq2" type="button" role="tab" aria-selected="false"><b>RQ2</b> Traceability</button>
+        <button data-evidence="rq3" type="button" role="tab" aria-selected="false"><b>RQ3</b> Diversity</button>
+        <button data-evidence="rq4" type="button" role="tab" aria-selected="false"><b>RQ4</b> Diagnostic model</button>
       </div>
       <div class="evidence-panel" id="evidence-panel" aria-live="polite"></div>
     </section>
@@ -265,18 +276,18 @@
       </div>
       <div class="claim-lab">
         <div class="claim-list" role="list">
-          <button class="active" data-claim="logged" type="button">“The article was logged in a recommendation list.”</button>
-          <button data-claim="absent" type="button">“The article was not recommended because it is absent from the retained list.”</button>
-          <button data-claim="profile" type="button">“The profile fully captures the user’s interests.”</button>
-          <button data-claim="success" type="button">“Profile–click agreement means personalization succeeded.”</button>
-          <button data-claim="seen" type="button">“The user saw and attended to the article.”</button>
-          <button data-claim="clicked" type="button">“The user clicked the article.”</button>
-          <button data-claim="read" type="button">“The user read the article deeply.”</button>
-          <button data-claim="caused" type="button">“The recommendation caused the click.”</button>
-          <button data-claim="diverse" type="button">“The system exposed the user to diverse content.”</button>
+          <button class="active" data-claim="logged" type="button" aria-pressed="true">“The article was logged in a recommendation list.”</button>
+          <button data-claim="absent" type="button" aria-pressed="false">“The article was not recommended because it is absent from the retained list.”</button>
+          <button data-claim="profile" type="button" aria-pressed="false">“The profile fully captures the user’s interests.”</button>
+          <button data-claim="success" type="button" aria-pressed="false">“Profile–click agreement means personalization succeeded.”</button>
+          <button data-claim="seen" type="button" aria-pressed="false">“The user saw and attended to the article.”</button>
+          <button data-claim="clicked" type="button" aria-pressed="false">“The user clicked the article.”</button>
+          <button data-claim="read" type="button" aria-pressed="false">“The user read the article deeply.”</button>
+          <button data-claim="caused" type="button" aria-pressed="false">“The recommendation caused the click.”</button>
+          <button data-claim="diverse" type="button" aria-pressed="false">“The system exposed the user to diverse content.”</button>
         </div>
         <div class="claim-result" id="claim-result" aria-live="polite">
-          <div class="claim-result-head"><span class="status supported" id="claim-status">Supported</span><div class="evidence-chips" id="evidence-chips"><b>E</b></div></div>
+          <div class="claim-result-head"><span class="status supported" id="claim-status">Supported</span><div class="evidence-chips" id="evidence-chips"><b class="evidence-e">E</b></div></div>
           <h3 id="claim-title">Directly observed in E</h3>
           <p id="claim-copy">The retained recommendation log can establish list membership and recorded rank for that list. It does not establish visual attention.</p>
           <div class="claim-reasoning">
@@ -311,6 +322,6 @@
   </main>
 
   <footer><span>PEC Gap interactive tutorial, 2026</span><a href="#top">Back to top ↑</a></footer>
-  <script src="tutorial.js?v=9"></script>
+  <script src="tutorial.js?v=11"></script>
 </body>
 </html>

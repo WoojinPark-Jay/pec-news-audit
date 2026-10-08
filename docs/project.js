@@ -7,12 +7,14 @@ if (route.get('view') === 'tutorial') {
 const dialog = document.querySelector('#lightbox');
 const dialogImage = dialog.querySelector('img');
 const themeToggle = document.querySelector('#theme-toggle');
+const updateThemeLabel = () => themeToggle.setAttribute('aria-label', `Switch to ${document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'} theme`);
+updateThemeLabel();
 
 themeToggle.addEventListener('click', () => {
   const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
   document.documentElement.dataset.theme = next;
   localStorage.setItem('pec-theme', next);
-  themeToggle.setAttribute('aria-label', `Switch to ${next === 'dark' ? 'light' : 'dark'} theme`);
+  updateThemeLabel();
 });
 
 document.querySelectorAll('[data-lightbox]').forEach((button) => {
