@@ -9,7 +9,7 @@
   <link rel="icon" href="../favicon.svg?v=1" type="image/svg+xml">
   <link rel="icon" href="../favicon-32.png?v=1" type="image/png" sizes="32x32">
   <script>try{document.documentElement.dataset.theme=localStorage.getItem('pec-theme')||'light'}catch(e){document.documentElement.dataset.theme='light'}</script>
-  <link rel="stylesheet" href="tutorial.css?v=7">
+  <link rel="stylesheet" href="tutorial.css?v=8">
 </head>
 <body>
   <header class="tutorial-header">
@@ -34,6 +34,52 @@
         <a class="button quiet" href="https://arxiv.org/abs/2610.10173">Read the paper</a>
       </div>
       <p class="boundary-banner"><strong>Scope.</strong> A platform trace supports only the claim its measurement can carry: logged exposure is not attention, and a click is not reading depth. Synthetic examples and paper results are labeled separately below.</p>
+    </section>
+
+    <section class="pec-core" aria-labelledby="pec-core-title">
+      <div class="pec-core-heading">
+        <div><span class="section-kicker">Measurement map</span><h2 id="pec-core-title">The gap lives between traces.</h2></div>
+        <p>Each layer is a separate record. Hover, focus, or select a relation to reveal the audit methods that can connect it—without collapsing the layers.</p>
+      </div>
+
+      <div class="trace-system" aria-label="Preference, exposure, surface, and consumption data layers">
+        <article class="trace-stack core-p">
+          <div class="stack-title"><b>P</b><span>Preference</span></div>
+          <div class="stack-chips"><span>stated category</span><span>profile weight</span><span>stored state</span></div>
+          <p>What the user explicitly stored</p>
+        </article>
+        <div class="system-gap" aria-hidden="true"><i></i><b>≠</b></div>
+        <article class="trace-stack core-e">
+          <div class="stack-title"><b>E</b><span>Logged exposure</span></div>
+          <div class="stack-chips"><span>article ID</span><span>rank</span><span>user-day list</span></div>
+          <p>What the system retained</p>
+        </article>
+        <div class="system-gap" aria-hidden="true"><i></i><b>≠</b></div>
+        <article class="trace-stack core-s">
+          <div class="stack-title"><b>S</b><span>Surface</span></div>
+          <div class="stack-chips"><span>home / feed</span><span>search</span><span>category</span></div>
+          <p>Where the click journey entered</p>
+        </article>
+        <div class="system-gap" aria-hidden="true"><i></i><b>≠</b></div>
+        <article class="trace-stack core-c">
+          <div class="stack-title"><b>C</b><span>Consumption</span></div>
+          <div class="stack-chips"><span>click</span><span>timestamp</span><span>article category</span></div>
+          <p>What the click log observed</p>
+        </article>
+      </div>
+
+      <div class="core-audit-tabs" role="tablist" aria-label="PEC audit relations">
+        <button class="active" data-core-lens="alignment" type="button" role="tab" aria-selected="true"><span>P ↔ C</span><b>Preference alignment</b><small>match · overlap · similarity</small></button>
+        <button data-core-lens="traceability" type="button" role="tab" aria-selected="false"><span>E ↔ C</span><b>Traceability</b><small>hit · baseline · lift</small></button>
+        <button data-core-lens="diversity" type="button" role="tab" aria-selected="false"><span>E ↔ C</span><b>Diversity shift</b><small>entropy · concentration · JS</small></button>
+        <button data-core-lens="surface" type="button" role="tab" aria-selected="false"><span>S → C</span><b>Pathway context</b><small>surface share · sensitivity</small></button>
+      </div>
+
+      <div class="core-lens" id="core-lens" aria-live="polite">
+        <div class="core-lens-question"><span id="core-lens-relation">P ↔ C</span><div><h3 id="core-lens-title">Does the stored profile align with later clicking?</h3><p id="core-lens-copy">Compare dominant categories, active sets, and weighted distributions. Each statistic answers a different version of “alignment.”</p></div></div>
+        <div class="core-lens-methods" id="core-lens-methods"><code>argmax match</code><code>Jaccard J</code><code>cosine A</code><code>chance-based nulls</code></div>
+        <p class="core-lens-boundary"><b>Interpretation boundary</b><span id="core-lens-boundary">Agreement between P and C does not establish satisfaction, total interest, or causal personalization success.</span></p>
+      </div>
     </section>
 
     <nav class="progress-nav" aria-label="Tutorial steps">
@@ -263,6 +309,6 @@
   </main>
 
   <footer><span>PEC Gap interactive tutorial, 2026</span><a href="#top">Back to top ↑</a></footer>
-  <script src="tutorial.js?v=6"></script>
+  <script src="tutorial.js?v=7"></script>
 </body>
 </html>

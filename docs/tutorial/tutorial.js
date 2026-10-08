@@ -25,6 +25,53 @@ const scenarios = {
   }
 };
 
+const coreLenses = {
+  alignment: {
+    relation: 'P ↔ C',
+    title: 'Does the stored profile align with later clicking?',
+    copy: 'Compare dominant categories, active sets, and weighted distributions. Each statistic answers a different version of “alignment.”',
+    methods: ['argmax match', 'Jaccard J', 'cosine A', 'chance-based nulls'],
+    boundary: 'Agreement between P and C does not establish satisfaction, total interest, or causal personalization success.'
+  },
+  traceability: {
+    relation: 'E ↔ C',
+    title: 'How much clicked activity can the retained list trace?',
+    copy: 'Condition on comparable user-days, search for the clicked item in E, and compare the observed hit against plausible non-personalized expectations.',
+    methods: ['same-day hit', 'candidate baseline', 'Lift@k', 'clustered bootstrap CI'],
+    boundary: 'A hit supports list–click co-occurrence, not visual attention or causation. A miss does not establish that no exposure occurred elsewhere.'
+  },
+  diversity: {
+    relation: 'E ↔ C',
+    title: 'Do the two layers differ in breadth, concentration, or composition?',
+    copy: 'Normalize each distribution separately, control the event-count imbalance, and report multiple metrics because no single score captures every kind of gap.',
+    methods: ['normalized entropy', 'HHI', 'top share', 'JS divergence', 'count matching'],
+    boundary: 'Logged-list diversity describes retained E. It does not automatically describe what the user noticed, consumed, or read deeply.'
+  },
+  surface: {
+    relation: 'S → C',
+    title: 'Which interface pathway produced the recorded click entry?',
+    copy: 'Use surface metadata to distinguish home/feed, search, category, headline, newsroom, and article-detail pathways before interpreting list coverage.',
+    methods: ['surface shares', 'pathway stratification', 'cohort sensitivity', 'traceable vs. other routes'],
+    boundary: 'S records the click entry context available in the log. It does not reconstruct every screen view or preceding recommendation event.'
+  }
+};
+function renderCoreLens(key) {
+  const lens = coreLenses[key];
+  document.querySelectorAll('[data-core-lens]').forEach((button) => {
+    const active = button.dataset.coreLens === key;
+    button.classList.toggle('active', active);
+    button.setAttribute('aria-selected', String(active));
+  });
+  document.querySelector('#core-lens-relation').textContent = lens.relation;
+  document.querySelector('#core-lens-title').textContent = lens.title;
+  document.querySelector('#core-lens-copy').textContent = lens.copy;
+  document.querySelector('#core-lens-methods').innerHTML = lens.methods.map((method) => `<code>${method}</code>`).join('');
+  document.querySelector('#core-lens-boundary').textContent = lens.boundary;
+}
+document.querySelectorAll('[data-core-lens]').forEach((button) => {
+  ['mouseenter', 'focus', 'click'].forEach((eventName) => button.addEventListener(eventName, () => renderCoreLens(button.dataset.coreLens)));
+});
+
 document.querySelectorAll('[data-scenario]').forEach((button) => {
   button.addEventListener('click', () => {
     document.querySelectorAll('[data-scenario]').forEach((item) => item.classList.toggle('active', item === button));
