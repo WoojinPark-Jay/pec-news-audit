@@ -394,8 +394,10 @@ footer { display: flex; justify-content: space-between; padding: 20px 0 30px; bo
   .tutorial-section { padding: 30px 0; }
   .pec-core { padding: 14px; }
   .trace-system { grid-template-columns: 1fr; gap: 8px; padding-inline: 2px; }
+  .trace-system::before { display: none; }
   .trace-system .trace-stack, .trace-system .core-s, .trace-system .core-c { grid-column: 1; }
-  .system-gap { min-height: 20px; transform: rotate(90deg); }
+  .system-gap { min-height: 28px; transform: none; }
+  .system-gap i { inset: 0 auto 0 50%; width: 1px; height: auto; }
   .trace-system .system-gap:nth-of-type(2) { display: grid; }
   .core-audit-tabs { grid-template-columns: 1fr; }
   .core-audit-tabs button { border-right: 0; border-bottom: 1px solid var(--line); }
